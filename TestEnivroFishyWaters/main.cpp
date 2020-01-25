@@ -5,11 +5,56 @@ using namespace std;
 using namespace sf;
 
 RenderWindow app(VideoMode(700, 700), "fishy Waters");
+int tileX = 0;
+int tileY = 0;
+int playerX = 11;
+int playerY = 2;
+
+Texture wText;
+Sprite water;
+
+Texture sText;
+Sprite sand;
+
+Texture stText;
+Sprite stone;
+
+Texture bText;
+Sprite boat;
+
+void spawn(Texture tiles[4], int tileX, int tileY) 
+{
+
+	
+
+	water.setTexture(tiles[0]);
+
+	water.setPosition(tileX * 32 , tileY * 32 );
+
+
+
+	sand.setTexture(tiles[1]);
+
+	sand.setPosition(tileX * 32, tileY * 32);
+
+	stone.setTexture(tiles[2]);
+
+	stone.setPosition(tileX * 32, tileY * 32);
+	boat.setTexture(tiles[3]);
+
+	boat.setPosition(playerX * 32, playerY * 32);
+
+	app.draw(boat);
+	app.draw(stone);
+	app.draw(sand);
+	app.draw(water);
+
+}
 
 
 int main()
 {
-	
+	app.setFramerateLimit(60);
 	Texture wText;
 	wText.loadFromFile("water.png");
 	Sprite water;
@@ -22,14 +67,11 @@ int main()
 	Texture bText;
 	bText.loadFromFile("boat.png");
 	Sprite boat;
-	int tileX =0;
-	int tileY = 0;
-	int playerX = 11;
-	int playerY = 2;
 	
 	
-
 	Texture tiles[4] = { wText, sText, stText, bText };
+	
+	
 
 
 	int gamefield[22][22] = 
@@ -136,7 +178,7 @@ while (app.isOpen()) {
 
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 
 		playerX += 1;
@@ -164,7 +206,7 @@ while (app.isOpen()) {
 
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 
 		
@@ -194,7 +236,7 @@ while (app.isOpen()) {
 
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 
 		playerX -= 1;
@@ -230,27 +272,11 @@ while (app.isOpen()) {
 		for (int j = 0; j < 22; j++)
 		{
 
-			water.setTexture(tiles[gamefield[i][j]]);
+			
+			spawn(&tiles[gamefield[i][j]], j, i);
 
-			water.setPosition(tileX = 32 * j, tileY = 32 * i);
-
-
-
-			sand.setTexture(tiles[gamefield[i][j]]);
-
-			sand.setPosition(tileX = 32 * j, tileY = 32 * i);
-
-			stone.setTexture(tiles[gamefield[i][j]]);
-
-			stone.setPosition(tileX = 32 * j, tileY = 32 * i);
-
-			boat.setTexture(tiles[3]);
-
-			boat.setPosition(playerX * 32 , playerY * 32 );
-
-			app.draw(boat);
-			app.draw(sand);
-			app.draw(water);
+			
+			
 			
 		}
 
