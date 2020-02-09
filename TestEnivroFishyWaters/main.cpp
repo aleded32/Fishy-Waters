@@ -10,6 +10,37 @@ int tileY = 0;
 int playerX = 11;
 int playerY = 2;
 
+int gamefield[22][22] =
+{
+	5,5,5,5,1,1,1,1,1,5,5,5,5,5,5,1,1,1,2,1,5,5,
+	5,0,0,0,2,1,1,2,1,0,0,0,0,0,0,1,1,2,1,1,0,5,
+	5,0,0,0,0,1,4,1,0,0,0,0,0,0,0,0,1,4,1,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,1,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,0,0,0,5,
+	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
+	5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+
+
+
+};
+
+Texture dText;
+
 Texture wText;
 Sprite water;
 
@@ -22,15 +53,15 @@ Sprite stone;
 Texture bText;
 Sprite boat;
 
-void spawn(Texture tiles[4], int tileX, int tileY) 
+void spawn(Texture tiles[6], int tileX, int tileY) 
 {
-
 	
 
+	water.setTexture(tiles[5]);
+
 	water.setTexture(tiles[0]);
-
+	
 	water.setPosition(tileX * 32 , tileY * 32 );
-
 
 
 	sand.setTexture(tiles[1]);
@@ -40,9 +71,7 @@ void spawn(Texture tiles[4], int tileX, int tileY)
 	stone.setTexture(tiles[2]);
 
 	stone.setPosition(tileX * 32, tileY * 32);
-	boat.setTexture(tiles[3]);
-
-	boat.setPosition(playerX * 32, playerY * 32);
+	
 
 	app.draw(boat);
 	app.draw(stone);
@@ -50,6 +79,8 @@ void spawn(Texture tiles[4], int tileX, int tileY)
 	app.draw(water);
 
 }
+
+
 
 
 int main()
@@ -69,39 +100,12 @@ int main()
 	Sprite boat;
 	
 	
-	Texture tiles[4] = { wText, sText, stText, bText };
+	Texture tiles[6] = { wText, sText, stText, bText, dText, wText};
 	
 	
 
 
-	int gamefield[22][22] = 
-	{
-		0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,1,1,1,2,1,0,0,
-		0,0,0,0,2,1,1,2,1,0,0,0,0,0,0,1,1,2,1,1,0,0,
-		0,0,0,0,0,1,4,1,0,0,0,0,0,0,0,0,1,4,1,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,1,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-		
 	
-	
-	};
 
 	for(int i = 0; i < 22; i ++){
 		for(int j = 0; j < 22; j ++){
@@ -153,10 +157,17 @@ while (app.isOpen()) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		
+
+		
+	
+		if (gamefield[playerY-1][playerX] == 0) 
+		{
 			playerY -= 1;
 			gamefield[playerY + 1][playerX] = 0;
 			gamefield[playerY][playerX] = 3;
-			
+		}
+		else if (gamefield[playerY - 1][playerX] != 0);
+		
 		
 		for (int i = 0; i < 22; i++) {
 			for (int j = 0; j < 22; j++) {
@@ -181,9 +192,13 @@ while (app.isOpen()) {
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 
-		playerX += 1;
-		gamefield[playerY][playerX -1] = 0;
-		gamefield[playerY][playerX] = 3;
+		if (gamefield[playerY][playerX + 1] == 0)
+		{
+			playerX += 1;
+			gamefield[playerY][playerX - 1] = 0;
+			gamefield[playerY][playerX] = 3;
+		}
+		else if (gamefield[playerY][playerX + 1] != 0);
 
 
 		for (int i = 0; i < 22; i++) {
@@ -211,9 +226,13 @@ while (app.isOpen()) {
 
 		
 
-		playerY += 1;
-		gamefield[playerY - 1][playerX] = 0;
-		gamefield[playerY][playerX] = 3;
+		if (gamefield[playerY + 1][playerX] == 0)
+		{
+			playerY += 1;
+			gamefield[playerY - 1][playerX] = 0;
+			gamefield[playerY][playerX] = 3;
+		}
+		else if (gamefield[playerY + 1][playerX] != 0);
 
 
 		for (int i = 0; i < 22; i++) {
@@ -239,9 +258,13 @@ while (app.isOpen()) {
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 
-		playerX -= 1;
-		gamefield[playerY ][playerX + 1] = 0;
-		gamefield[playerY][playerX] = 3;
+		if (gamefield[playerY][playerX -1] == 0)
+		{
+			playerX -= 1;
+			gamefield[playerY][playerX + 1] = 0;
+			gamefield[playerY][playerX] = 3;
+		}
+		else if (gamefield[playerY][playerX -1] != 0);
 
 
 		for (int i = 0; i < 22; i++) {
@@ -272,6 +295,9 @@ while (app.isOpen()) {
 		for (int j = 0; j < 22; j++)
 		{
 
+			boat.setTexture(tiles[3]);
+
+			boat.setPosition(playerX * 32, playerY * 32);
 			
 			spawn(&tiles[gamefield[i][j]], j, i);
 
