@@ -1,14 +1,21 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 using namespace sf;
+
+
 
 RenderWindow app(VideoMode(700, 700), "fishy Waters");
 int tileX = 0;
 int tileY = 0;
 int playerX = 11;
 int playerY = 2;
+
+
+
 
 int gamefield[22][22] =
 {
@@ -39,21 +46,20 @@ int gamefield[22][22] =
 
 };
 
-Texture dText;
-
-Texture wText;
 Sprite water;
 
-Texture sText;
+
 Sprite sand;
 
-Texture stText;
+
 Sprite stone;
 
-Texture bText;
+
 Sprite boat;
 
-void spawn(Texture tiles[6], int tileX, int tileY) 
+Sprite fish;
+
+void spawn(Texture tiles[7], int tileX, int tileY, Clock clock) 
 {
 	
 
@@ -71,8 +77,17 @@ void spawn(Texture tiles[6], int tileX, int tileY)
 	stone.setTexture(tiles[2]);
 
 	stone.setPosition(tileX * 32, tileY * 32);
+
 	
 
+	
+
+	
+	
+	
+	
+	
+	
 	app.draw(boat);
 	app.draw(stone);
 	app.draw(sand);
@@ -83,24 +98,31 @@ void spawn(Texture tiles[6], int tileX, int tileY)
 
 
 
+
 int main()
 {
+	Clock clock;
 	app.setFramerateLimit(60);
 	Texture wText;
 	wText.loadFromFile("water.png");
-	Sprite water;
+	
 	Texture sText;
 	sText.loadFromFile("sand.png");
-	Sprite sand;
+	
 	Texture stText;
 	stText.loadFromFile("stone.png");
-	Sprite stone;
+	
 	Texture bText;
 	bText.loadFromFile("boat.png");
-	Sprite boat;
+	
+	Texture dText;
+
+	Texture fishText;
+	fishText.loadFromFile("fishTile.png");
+
 	
 	
-	Texture tiles[6] = { wText, sText, stText, bText, dText, wText};
+	Texture tiles[7] = { wText, sText, stText, bText, dText, wText, fishText};
 	
 	
 
@@ -111,6 +133,7 @@ int main()
 		for(int j = 0; j < 22; j ++){
 			
 			gamefield[playerY][playerX] = 3;
+			gamefield[tileX][tileY] = 6;
 			gamefield[tileX][tileY] = 1;
 			gamefield[tileX][tileY] = 2;
 			gamefield[tileX][tileY] = 0;
@@ -131,6 +154,7 @@ cout << endl;
 
 Event e;
 
+	
 while (app.isOpen()) {
 
 
@@ -299,12 +323,44 @@ while (app.isOpen()) {
 
 			boat.setPosition(playerX * 32, playerY * 32);
 			
-			spawn(&tiles[gamefield[i][j]], j, i);
+			spawn(&tiles[gamefield[i][j]], j, i, clock);
 
 			
 			
 			
 		}
+
+	}
+
+	int fishSpawn = (int)clock.getElapsedTime().asSeconds();
+
+	if (fishSpawn >= 7)
+	{
+
+		for (int i = 0; i < 22; i++) {
+			for (int j = 0; j < 22; j++)
+			{
+				srand(time(NULL));
+				int rSpawnX = rand() % 10 + 4;
+				int rSpawnY = rand() % 9 + 4;
+
+
+				gamefield[rSpawnX][rSpawnY] = 6;
+
+
+				fish.setTexture(tiles[6]);
+
+				fish.setPosition(tileX * 32, tileY * 32);
+
+				app.draw(fish);
+
+
+			}
+
+
+		}
+		clock.restart();
+
 
 	}
 

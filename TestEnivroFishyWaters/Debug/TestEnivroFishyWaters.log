@@ -1,10 +1,12 @@
 ﻿  main.cpp
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(64): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(69): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(73): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(172): warning C4390: ';' : empty controlled statement found; is this the intent?
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(204): warning C4390: ';' : empty controlled statement found; is this the intent?
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(238): warning C4390: ';' : empty controlled statement found; is this the intent?
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(270): warning C4390: ';' : empty controlled statement found; is this the intent?
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(300): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(70): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(75): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(79): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(196): warning C4390: ';' : empty controlled statement found; is this the intent?
+d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(228): warning C4390: ';' : empty controlled statement found; is this the intent?
+d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(262): warning C4390: ';' : empty controlled statement found; is this the intent?
+d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(294): warning C4390: ';' : empty controlled statement found; is this the intent?
+d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(324): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(343): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(353): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
   TestEnivroFishyWaters.vcxproj -> D:\DungeonRush\Fishy-Waters\Debug\TestEnivroFishyWaters.exe
