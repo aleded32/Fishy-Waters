@@ -78,15 +78,7 @@ void spawn(Texture tiles[7], int tileX, int tileY, Clock clock)
 
 	stone.setPosition(tileX * 32, tileY * 32);
 
-	
 
-	
-
-	
-	
-	
-	
-	
 	
 	app.draw(boat);
 	app.draw(stone);
@@ -313,25 +305,6 @@ while (app.isOpen()) {
 
 	app.clear();
 	
-
-	for (int i = 0; i < 22; i++)
-	{
-		for (int j = 0; j < 22; j++)
-		{
-
-			boat.setTexture(tiles[3]);
-
-			boat.setPosition(playerX * 32, playerY * 32);
-			
-			spawn(&tiles[gamefield[i][j]], j, i, clock);
-
-			
-			
-			
-		}
-
-	}
-
 	int fishSpawn = (int)clock.getElapsedTime().asSeconds();
 
 	if (fishSpawn >= 7)
@@ -342,7 +315,7 @@ while (app.isOpen()) {
 			{
 				srand(time(NULL));
 				int rSpawnX = rand() % 10 + 4;
-				int rSpawnY = rand() % 9 + 4;
+				int rSpawnY = rand() % 8 + 4;
 
 
 				gamefield[rSpawnX][rSpawnY] = 6;
@@ -363,6 +336,26 @@ while (app.isOpen()) {
 
 
 	}
+
+	for (int i = 0; i < 22; i++)
+	{
+		for (int j = 0; j < 22; j++)
+		{
+
+			boat.setTexture(tiles[3]);
+
+			boat.setPosition(playerX * 32, playerY * 32);
+			
+			spawn(&tiles[gamefield[i][j]], j, i, clock);
+
+			
+			
+			
+		}
+
+	}
+
+	
 
 
 	app.display();
