@@ -315,10 +315,10 @@ while (app.isOpen()) {
 			{
 				srand(time(NULL));
 				int rSpawnX = rand() % 10 + 4;
-				int rSpawnY = rand() % 8 + 4;
+				int rSpawnY = rand() % 7 + 4;
 
 
-				gamefield[rSpawnX][rSpawnY] = 6;
+				gamefield[rSpawnY][rSpawnX] = 6;
 
 
 				fish.setTexture(tiles[6]);
