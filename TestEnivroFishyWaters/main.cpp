@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 #include <time.h>
+#include "player.h"
 
 using namespace std;
 using namespace sf;
@@ -11,36 +12,35 @@ using namespace sf;
 RenderWindow app(VideoMode(700, 700), "fishy Waters");
 int tileX = 0;
 int tileY = 0;
-int playerX = 11;
-int playerY = 2;
+
 
 
 
 
 int gamefield[22][22] =
 {
-	5,5,5,5,1,1,1,1,1,5,5,5,5,5,5,1,1,1,2,1,5,5,
-	5,0,0,0,2,1,1,2,1,0,0,0,0,0,0,1,1,2,1,1,0,5,
-	5,0,0,0,0,1,4,1,0,0,0,0,0,0,0,0,1,4,1,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,1,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,0,0,0,5,
-	5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
-	5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+	8,8,8,8,1,1,1,1,1,8,8,8,8,8,8,1,1,1,2,1,8,8,
+	8,0,0,0,2,1,1,2,1,0,0,0,0,0,0,1,1,2,1,1,0,8,
+	8,0,0,0,0,1,7,1,0,0,0,0,0,0,0,0,1,7,1,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,1,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,0,0,0,8,
+	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+	8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
 
 
 
@@ -55,15 +55,17 @@ Sprite sand;
 Sprite stone;
 
 
-Sprite boat;
-
 Sprite fish;
+
+Sprite grouper;
+
+Sprite barracuda;
 
 void spawn(Texture tiles[7], int tileX, int tileY, Clock clock) 
 {
 	
 
-	water.setTexture(tiles[5]);
+	water.setTexture(tiles[8]);
 
 	water.setTexture(tiles[0]);
 	
@@ -80,7 +82,7 @@ void spawn(Texture tiles[7], int tileX, int tileY, Clock clock)
 
 
 	
-	app.draw(boat);
+	
 	app.draw(stone);
 	app.draw(sand);
 	app.draw(water);
@@ -95,36 +97,51 @@ int main()
 {
 	Clock clock;
 	app.setFramerateLimit(60);
+
+	
+
 	Texture wText;
+	Texture sText;
+	Texture bText;
+	Texture dText;
+	Texture fishText;
+	Texture grouperText;
+	Texture BarracudaText;
+	Texture stText;
+
 	wText.loadFromFile("water.png");
 	
-	Texture sText;
+	
 	sText.loadFromFile("sand.png");
 	
-	Texture stText;
+	
 	stText.loadFromFile("stone.png");
 	
-	Texture bText;
+
 	bText.loadFromFile("boat.png");
 	
-	Texture dText;
-
-	Texture fishText;
+	
 	fishText.loadFromFile("fishTile.png");
 
-	
-	
-	Texture tiles[7] = { wText, sText, stText, bText, dText, wText, fishText};
-	
-	
+	grouperText.loadFromFile("GrouperTile.png");
 
+	BarracudaText.loadFromFile("barTile.png");
+
+	
+	Texture tiles[9] = { wText, sText, stText, bText,  fishText, grouperText, BarracudaText , dText, wText};
+
+	
+	Player player;
+	
 
 	
 
 	for(int i = 0; i < 22; i ++){
 		for(int j = 0; j < 22; j ++){
 			
-			gamefield[playerY][playerX] = 3;
+			gamefield[player.playerY][player.playerX] = 3;
+			gamefield[tileX][tileY] = 4;
+			gamefield[tileX][tileY] = 8;
 			gamefield[tileX][tileY] = 6;
 			gamefield[tileX][tileY] = 1;
 			gamefield[tileX][tileY] = 2;
@@ -176,13 +193,13 @@ while (app.isOpen()) {
 
 		
 	
-		if (gamefield[playerY-1][playerX] == 0) 
+		if (gamefield[player.playerY-1][player.playerX] == 0) 
 		{
-			playerY -= 1;
-			gamefield[playerY + 1][playerX] = 0;
-			gamefield[playerY][playerX] = 3;
+			player.playerY -= 1;
+			gamefield[player.playerY + 1][player.playerX] = 0;
+			gamefield[player.playerY][player.playerX] = 3;
 		}
-		else if (gamefield[playerY - 1][playerX] != 0);
+		else if (gamefield[player.playerY - 1][player.playerX] != 0);
 		
 		
 		for (int i = 0; i < 22; i++) {
@@ -208,13 +225,13 @@ while (app.isOpen()) {
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 
-		if (gamefield[playerY][playerX + 1] == 0)
+		if (gamefield[player.playerY][player.playerX + 1] == 0)
 		{
-			playerX += 1;
-			gamefield[playerY][playerX - 1] = 0;
-			gamefield[playerY][playerX] = 3;
+			player.playerX += 1;
+			gamefield[player.playerY][player.playerX - 1] = 0;
+			gamefield[player.playerY][player.playerX] = 3;
 		}
-		else if (gamefield[playerY][playerX + 1] != 0);
+		else if (gamefield[player.playerY][player.playerX + 1] != 0);
 
 
 		for (int i = 0; i < 22; i++) {
@@ -242,13 +259,13 @@ while (app.isOpen()) {
 
 		
 
-		if (gamefield[playerY + 1][playerX] == 0)
+		if (gamefield[player.playerY + 1][player.playerX] == 0)
 		{
-			playerY += 1;
-			gamefield[playerY - 1][playerX] = 0;
-			gamefield[playerY][playerX] = 3;
+			player.playerY += 1;
+			gamefield[player.playerY - 1][player.playerX] = 0;
+			gamefield[player.playerY][player.playerX] = 3;
 		}
-		else if (gamefield[playerY + 1][playerX] != 0);
+		else if (gamefield[player.playerY + 1][player.playerX] != 0);
 
 
 		for (int i = 0; i < 22; i++) {
@@ -274,13 +291,13 @@ while (app.isOpen()) {
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 
-		if (gamefield[playerY][playerX -1] == 0)
+		if (gamefield[player.playerY][player.playerX -1] == 0)
 		{
-			playerX -= 1;
-			gamefield[playerY][playerX + 1] = 0;
-			gamefield[playerY][playerX] = 3;
+			player.playerX -= 1;
+			gamefield[player.playerY][player.playerX + 1] = 0;
+			gamefield[player.playerY][player.playerX] = 3;
 		}
-		else if (gamefield[playerY][playerX -1] != 0);
+		else if (gamefield[player.playerY][player.playerX -1] != 0);
 
 
 		for (int i = 0; i < 22; i++) {
@@ -314,18 +331,29 @@ while (app.isOpen()) {
 			for (int j = 0; j < 22; j++)
 			{
 				srand(time(NULL));
+				
 				int rSpawnX = rand() % 10 + 4;
 				int rSpawnY = rand() % 7 + 4;
+				int rfish = rand() % 3 + 4;
 
 
-				gamefield[rSpawnY][rSpawnX] = 6;
+				gamefield[rSpawnY][rSpawnX] = rfish;
 
+				grouper.setTexture(tiles[5]);
 
-				fish.setTexture(tiles[6]);
+				grouper.setPosition(tileX * 32, tileY * 32);
+
+				barracuda.setTexture(tiles[6]);
+
+				barracuda.setPosition(tileX * 32, tileY * 32);
+
+				fish.setTexture(tiles[4]);
 
 				fish.setPosition(tileX * 32, tileY * 32);
 
 				app.draw(fish);
+				app.draw(grouper);
+				app.draw(barracuda);
 
 
 			}
@@ -342,9 +370,8 @@ while (app.isOpen()) {
 		for (int j = 0; j < 22; j++)
 		{
 
-			boat.setTexture(tiles[3]);
+			app.draw(player.boat);
 
-			boat.setPosition(playerX * 32, playerY * 32);
 			
 			spawn(&tiles[gamefield[i][j]], j, i, clock);
 
