@@ -1,14 +1,25 @@
-﻿  main.cpp
-d:\dungeonrush\fishy-waters\testenivrofishywaters\player.h(26): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(72): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(77): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(81): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(205): warning C4390: ';' : empty controlled statement found; is this the intent?
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(237): warning C4390: ';' : empty controlled statement found; is this the intent?
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(271): warning C4390: ';' : empty controlled statement found; is this the intent?
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(303): warning C4390: ';' : empty controlled statement found; is this the intent?
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(333): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(344): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(348): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(352): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-  TestEnivroFishyWaters.vcxproj -> D:\DungeonRush\Fishy-Waters\Debug\TestEnivroFishyWaters.exe
+﻿Build started 25/02/2020 16:02:55.
+     1>Project "C:\Users\aled-uni\Desktop\Fishy-Waters-master\TestEnivroFishyWaters\TestEnivroFishyWaters.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\SFML v2.4.0(win32- Visual Studio 2012)\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>c:\users\aled-uni\desktop\fishy-waters-master\testenivrofishywaters\player.h(26): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\aled-uni\desktop\fishy-waters-master\testenivrofishywaters\fish.h(63): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\aled-uni\desktop\fishy-waters-master\testenivrofishywaters\fish.h(73): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\aled-uni\desktop\fishy-waters-master\testenivrofishywaters\fish.h(77): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\aled-uni\desktop\fishy-waters-master\testenivrofishywaters\fish.h(81): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\aled-uni\desktop\fishy-waters-master\testenivrofishywaters\main.cpp(46): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\aled-uni\desktop\fishy-waters-master\testenivrofishywaters\main.cpp(51): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\aled-uni\desktop\fishy-waters-master\testenivrofishywaters\main.cpp(55): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\aled-uni\desktop\fishy-waters-master\testenivrofishywaters\main.cpp(168): warning C4390: ';' : empty controlled statement found; is this the intent?
+     1>c:\users\aled-uni\desktop\fishy-waters-master\testenivrofishywaters\main.cpp(200): warning C4390: ';' : empty controlled statement found; is this the intent?
+     1>c:\users\aled-uni\desktop\fishy-waters-master\testenivrofishywaters\main.cpp(234): warning C4390: ';' : empty controlled statement found; is this the intent?
+     1>c:\users\aled-uni\desktop\fishy-waters-master\testenivrofishywaters\main.cpp(266): warning C4390: ';' : empty controlled statement found; is this the intent?
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\aled-uni\Desktop\Fishy-Waters-master\Debug\TestEnivroFishyWaters.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SFML v2.4.0(win32- Visual Studio 2012)\lib" "sfml-system-d.lib" "sfml-graphics-d.lib" "sfml-audio-d.lib" "sfml-network-d.lib" "sfml-window-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\aled-uni\Desktop\Fishy-Waters-master\Debug\TestEnivroFishyWaters.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\aled-uni\Desktop\Fishy-Waters-master\Debug\TestEnivroFishyWaters.lib" /MACHINE:X86 Debug\main.obj
+         TestEnivroFishyWaters.vcxproj -> C:\Users\aled-uni\Desktop\Fishy-Waters-master\Debug\TestEnivroFishyWaters.exe
+     1>Done Building Project "C:\Users\aled-uni\Desktop\Fishy-Waters-master\TestEnivroFishyWaters\TestEnivroFishyWaters.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.81

@@ -1,8 +1,11 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <functional>
 #include <stdlib.h>
 #include <time.h>
 #include "player.h"
+#include "fish.h"
+#include <SFML/System.hpp>
 
 using namespace std;
 using namespace sf;
@@ -17,34 +20,7 @@ int tileY = 0;
 
 
 
-int gamefield[22][22] =
-{
-	8,8,8,8,1,1,1,1,1,8,8,8,8,8,8,1,1,1,2,1,8,8,
-	8,0,0,0,2,1,1,2,1,0,0,0,0,0,0,1,1,2,1,1,0,8,
-	8,0,0,0,0,1,7,1,0,0,0,0,0,0,0,0,1,7,1,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,1,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,0,0,0,8,
-	8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
-	8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
 
-
-
-};
 
 Sprite water;
 
@@ -55,12 +31,10 @@ Sprite sand;
 Sprite stone;
 
 
-Sprite fish;
 
-Sprite grouper;
 
-Sprite barracuda;
 
+//spawns in tiles for map
 void spawn(Texture tiles[7], int tileX, int tileY, Clock clock) 
 {
 	
@@ -98,44 +72,24 @@ int main()
 	Clock clock;
 	app.setFramerateLimit(60);
 
-	
+	//class classes
+	Fish fish;
+	Grouper grouper;
+	Barracuda barracuda;
+	Fishes fishes;
 
-	Texture wText;
-	Texture sText;
-	Texture bText;
-	Texture dText;
-	Texture fishText;
-	Texture grouperText;
-	Texture BarracudaText;
-	Texture stText;
 
 	wText.loadFromFile("water.png");
-	
-	
 	sText.loadFromFile("sand.png");
-	
-	
 	stText.loadFromFile("stone.png");
-	
-
 	bText.loadFromFile("boat.png");
-	
-	
-	fishText.loadFromFile("fishTile.png");
 
-	grouperText.loadFromFile("GrouperTile.png");
-
-	BarracudaText.loadFromFile("barTile.png");
-
-	
 	Texture tiles[9] = { wText, sText, stText, bText,  fishText, grouperText, BarracudaText , dText, wText};
 
 	
 	Player player;
-	
 
-	
-
+	//initilise gamefield
 	for(int i = 0; i < 22; i ++){
 		for(int j = 0; j < 22; j ++){
 			
@@ -186,7 +140,7 @@ while (app.isOpen()) {
 
 	}
 	
-
+	//player movement and collision
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		
@@ -321,54 +275,18 @@ while (app.isOpen()) {
 	}
 
 	app.clear();
-	
-	int fishSpawn = (int)clock.getElapsedTime().asSeconds();
-
-	if (fishSpawn >= 7)
-	{
-
-		for (int i = 0; i < 22; i++) {
-			for (int j = 0; j < 22; j++)
-			{
-				srand(time(NULL));
-				
-				int rSpawnX = rand() % 10 + 4;
-				int rSpawnY = rand() % 7 + 4;
-				int rfish = rand() % 3 + 4;
+	//calls fish spawning from class
+	fishes.fishSpawn(fish.fish, grouper.grouper,barracuda.barracuda,clock,&tiles[9], app, tileX, tileY);
 
 
-				gamefield[rSpawnY][rSpawnX] = rfish;
-
-				grouper.setTexture(tiles[5]);
-
-				grouper.setPosition(tileX * 32, tileY * 32);
-
-				barracuda.setTexture(tiles[6]);
-
-				barracuda.setPosition(tileX * 32, tileY * 32);
-
-				fish.setTexture(tiles[4]);
-
-				fish.setPosition(tileX * 32, tileY * 32);
-
-				app.draw(fish);
-				app.draw(grouper);
-				app.draw(barracuda);
-
-
-			}
-
-
-		}
-		clock.restart();
-
-
-	}
-
+	//spawns in the tiles
 	for (int i = 0; i < 22; i++)
 	{
 		for (int j = 0; j < 22; j++)
 		{
+
+				
+
 
 			app.draw(player.boat);
 
