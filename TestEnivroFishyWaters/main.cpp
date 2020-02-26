@@ -11,33 +11,21 @@ using namespace std;
 using namespace sf;
 
 
-
+//global variables
 RenderWindow app(VideoMode(700, 700), "fishy Waters");
 int tileX = 0;
 int tileY = 0;
 
-
-
-
-
-
-
 Sprite water;
-
-
 Sprite sand;
-
-
 Sprite stone;
-
-
+Sprite dock;
 
 
 
 //spawns in tiles for map
-void spawn(Texture tiles[7], int tileX, int tileY, Clock clock) 
+void spawn(Texture tiles[9], int tileX, int tileY, Clock clock) 
 {
-	
 
 	water.setTexture(tiles[8]);
 
@@ -54,9 +42,11 @@ void spawn(Texture tiles[7], int tileX, int tileY, Clock clock)
 
 	stone.setPosition(tileX * 32, tileY * 32);
 
+	dock.setTexture(tiles[7]);
 
+	dock.setPosition(tileX * 32, tileY * 32);
 	
-	
+	app.draw(dock);
 	app.draw(stone);
 	app.draw(sand);
 	app.draw(water);
@@ -69,6 +59,7 @@ void spawn(Texture tiles[7], int tileX, int tileY, Clock clock)
 
 int main()
 {
+	//local variables
 	Clock clock;
 	app.setFramerateLimit(60);
 
@@ -83,6 +74,7 @@ int main()
 	sText.loadFromFile("sand.png");
 	stText.loadFromFile("stone.png");
 	bText.loadFromFile("boat.png");
+	dText.loadFromFile("docks.png");
 
 	Texture tiles[9] = { wText, sText, stText, bText,  fishText, grouperText, BarracudaText , dText, wText};
 
@@ -95,6 +87,7 @@ int main()
 			
 			gamefield[player.playerY][player.playerX] = 3;
 			gamefield[tileX][tileY] = 4;
+			gamefield[tileX][tileY] = 7;
 			gamefield[tileX][tileY] = 8;
 			gamefield[tileX][tileY] = 6;
 			gamefield[tileX][tileY] = 1;
@@ -103,7 +96,7 @@ int main()
 			
 			
 	
-		cout << gamefield[i][j] << ' ';
+		//cout << gamefield[i][j] << ' ';
 
 		
 		
@@ -163,15 +156,15 @@ while (app.isOpen()) {
 
 
 
-				cout << gamefield[i][j] << ' ';
+				//cout << gamefield[i][j] << ' ';
 
 
 
 			}
-			cout << endl;
+			//cout << endl;
 
 		}
-		cout << endl;
+		//cout << endl;
 
 
 	}
@@ -195,15 +188,15 @@ while (app.isOpen()) {
 
 
 
-				cout << gamefield[i][j] << ' ';
+				//cout << gamefield[i][j] << ' ';
 
 
 
 			}
-			cout << endl;
+			//cout << endl;
 
 		}
-		cout << endl;
+		//cout << endl;
 
 
 	}
@@ -229,15 +222,15 @@ while (app.isOpen()) {
 
 
 
-				cout << gamefield[i][j] << ' ';
+				//cout << gamefield[i][j] << ' ';
 
 
 
 			}
-			cout << endl;
+			//cout << endl;
 
 		}
-		cout << endl;
+		///cout << endl;
 
 
 	}
@@ -271,38 +264,47 @@ while (app.isOpen()) {
 		}
 		cout << endl;
 
+		
+		
 
 	}
 
+	//sets the views for gamescreen and minimap
+	View minimap;
+	View gameScreen;
+	minimap.setViewport(FloatRect(0, 0 ,0.2,0.2));
+	gameScreen.setViewport(FloatRect(0.0,0.0,1.425f,1.425f));
+
 	app.clear();
+	
+	//for gamescreen
+	app.setView(gameScreen);
 	//calls fish spawning from class
 	fishes.fishSpawn(fish.fish, grouper.grouper,barracuda.barracuda,clock,&tiles[9], app, tileX, tileY);
-
-
 	//spawns in the tiles
 	for (int i = 0; i < 22; i++)
 	{
 		for (int j = 0; j < 22; j++)
 		{
-
-				
-
-
 			app.draw(player.boat);
-
-			
 			spawn(&tiles[gamefield[i][j]], j, i, clock);
-
-			
-			
-			
 		}
 
 	}
 
+	//for minimap
+	app.setView(minimap);
+	fishes.fishSpawn(fish.fish, grouper.grouper,barracuda.barracuda,clock,&tiles[9], app, tileX, tileY);
+	for (int i = 0; i < 22; i++)
+	{
+		for (int j = 0; j < 22; j++)
+		{
+			app.draw(player.boat);
+			spawn(&tiles[gamefield[i][j]], j, i, clock);
+		}
+	}
+
 	
-
-
 	app.display();
 }
 	
