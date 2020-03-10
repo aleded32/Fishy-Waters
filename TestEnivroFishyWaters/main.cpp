@@ -23,6 +23,8 @@ Sprite dock;
 
 
 
+
+
 //spawns in tiles for map
 void spawn(Texture tiles[9], int tileX, int tileY, Clock clock) 
 {
@@ -61,7 +63,7 @@ int main()
 {
 	//local variables
 	Clock clock;
-	app.setFramerateLimit(60);
+	app.setFramerateLimit(15);
 
 	//class classes
 	Fish fish;
@@ -96,7 +98,7 @@ int main()
 			
 			
 	
-		//cout << gamefield[i][j] << ' ';
+		cout << gamefield[i][j] << ' ';
 
 		
 		
@@ -132,6 +134,7 @@ while (app.isOpen()) {
 		}
 
 	}
+
 	
 	//player movement and collision
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -146,31 +149,11 @@ while (app.isOpen()) {
 			gamefield[player.playerY + 1][player.playerX] = 0;
 			gamefield[player.playerY][player.playerX] = 3;
 		}
-		else if (gamefield[player.playerY - 1][player.playerX] != 0);
+			else if (gamefield[player.playerY - 1][player.playerX] != 0);
 		
-		
-		for (int i = 0; i < 22; i++) {
-			for (int j = 0; j < 22; j++) {
-
-
-
-
-
-				//cout << gamefield[i][j] << ' ';
-
-
-
-			}
-			//cout << endl;
-
-		}
-		//cout << endl;
-
-
 	}
-
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
+		{
 
 		if (gamefield[player.playerY][player.playerX + 1] == 0)
 		{
@@ -178,29 +161,9 @@ while (app.isOpen()) {
 			gamefield[player.playerY][player.playerX - 1] = 0;
 			gamefield[player.playerY][player.playerX] = 3;
 		}
-		else if (gamefield[player.playerY][player.playerX + 1] != 0);
-
-
-		for (int i = 0; i < 22; i++) {
-			for (int j = 0; j < 22; j++) {
-
-
-
-
-
-				//cout << gamefield[i][j] << ' ';
-
-
-
-			}
-			//cout << endl;
+			else if (gamefield[player.playerY][player.playerX + 1] != 0);
 
 		}
-		//cout << endl;
-
-
-	}
-
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 
@@ -213,24 +176,6 @@ while (app.isOpen()) {
 			gamefield[player.playerY][player.playerX] = 3;
 		}
 		else if (gamefield[player.playerY + 1][player.playerX] != 0);
-
-
-		for (int i = 0; i < 22; i++) {
-			for (int j = 0; j < 22; j++) {
-
-
-
-
-
-				//cout << gamefield[i][j] << ' ';
-
-
-
-			}
-			//cout << endl;
-
-		}
-		///cout << endl;
 
 
 	}
@@ -247,26 +192,23 @@ while (app.isOpen()) {
 		else if (gamefield[player.playerY][player.playerX -1] != 0);
 
 
-		for (int i = 0; i < 22; i++) {
-			for (int j = 0; j < 22; j++) {
+	}
 
-
-
-
-
-				cout << gamefield[i][j] << ' ';
-
-
-
-			}
-			cout << endl;
-
+	else if (Keyboard::isKeyPressed(Keyboard::Up))
+	{
+		if(player.fishHeld >= player.fishHeldMax)
+		{
+			cout << "bag is full" << endl;
 		}
-		cout << endl;
+		if(player.fishHeld < player.fishHeldMax)
+		{
+			
+			player.Catch(fish.fish, barracuda.barracuda, grouper.grouper, player.playerX, player.playerY);
+			cout << "Fish Held " << player.fishHeld << "/" << player.fishHeldMax << endl;
+		}
 
 		
 		
-
 	}
 
 	//sets the views for gamescreen and minimap

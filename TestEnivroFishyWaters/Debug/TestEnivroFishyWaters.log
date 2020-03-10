@@ -1,27 +1,28 @@
-﻿Build started 26/02/2020 00:45:51.
+﻿Build started 10/03/2020 20:00:26.
      1>Project "D:\DungeonRush\Fishy-Waters\TestEnivroFishyWaters\TestEnivroFishyWaters.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"D:\SFML v2.4.0 (Win32 - Visual Studio 2012)\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"D:\SFML v2.4.0 (Win32 - Visual Studio 2012)\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\player.h(26): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>d:\dungeonrush\fishy-waters\testenivrofishywaters\fish.h(64): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
      1>d:\dungeonrush\fishy-waters\testenivrofishywaters\fish.h(74): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>d:\dungeonrush\fishy-waters\testenivrofishywaters\fish.h(78): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>d:\dungeonrush\fishy-waters\testenivrofishywaters\fish.h(82): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(34): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(39): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(43): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(47): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(152): warning C4390: ';' : empty controlled statement found; is this the intent?
-     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(184): warning C4390: ';' : empty controlled statement found; is this the intent?
-     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(218): warning C4390: ';' : empty controlled statement found; is this the intent?
-     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(250): warning C4390: ';' : empty controlled statement found; is this the intent?
-     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(275): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\player.h(31): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\player.h(44): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(36): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(41): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(45): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(49): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(154): warning C4390: ';' : empty controlled statement found; is this the intent?
+     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(166): warning C4390: ';' : empty controlled statement found; is this the intent?
+     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(181): warning C4390: ';' : empty controlled statement found; is this the intent?
+     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(195): warning C4390: ';' : empty controlled statement found; is this the intent?
+     1>d:\dungeonrush\fishy-waters\testenivrofishywaters\main.cpp(217): warning C4305: 'argument' : truncation from 'double' to 'float'
        Link:
-         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\DungeonRush\Fishy-Waters\Debug\TestEnivroFishyWaters.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\SFML v2.4.0 (Win32 - Visual Studio 2012)\lib" "sfml-system-d.lib" "sfml-graphics-d.lib" "sfml-audio-d.lib" "sfml-network-d.lib" "sfml-window-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\DungeonRush\Fishy-Waters\Debug\TestEnivroFishyWaters.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\DungeonRush\Fishy-Waters\Debug\TestEnivroFishyWaters.lib" /MACHINE:X86 Debug\main.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\DungeonRush\Fishy-Waters\Debug\TestEnivroFishyWaters.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\SFML v2.4.0 (Win32 - Visual Studio 2012)\lib" "sfml-system-d.lib" "sfml-graphics-d.lib" "sfml-audio-d.lib" "sfml-network-d.lib" "sfml-window-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\DungeonRush\Fishy-Waters\Debug\TestEnivroFishyWaters.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\DungeonRush\Fishy-Waters\Debug\TestEnivroFishyWaters.lib" /MACHINE:X86 Debug\main.obj
          TestEnivroFishyWaters.vcxproj -> D:\DungeonRush\Fishy-Waters\Debug\TestEnivroFishyWaters.exe
      1>Done Building Project "D:\DungeonRush\Fishy-Waters\TestEnivroFishyWaters\TestEnivroFishyWaters.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.87
+Time Elapsed 00:00:01.96
