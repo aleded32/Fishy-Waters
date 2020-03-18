@@ -51,6 +51,8 @@ class Fishes
 
 public : 
 
+	int value;
+
 
 void fishSpawn(Sprite fish, Sprite grouper, Sprite barracuda, Clock& clock, Texture tiles[9], RenderWindow& app, int tileX, int tileY)
 {
@@ -97,10 +99,12 @@ class Fish : public Fishes
 	public:
 
 		Sprite fish;
+		
 
 		Fish()
-		{
-				fishText.loadFromFile("fishTile.png");
+		{		
+			value = 20;
+			fishText.loadFromFile("fishTile.png");
 		}
 
 		//~Fish();
@@ -114,6 +118,7 @@ class Grouper : public Fishes
 
 		Grouper()
 		{
+			value = 50;
 			grouperText.loadFromFile("GrouperTile.png");
 		}
 
@@ -128,7 +133,8 @@ class Barracuda : public Fishes
 
 		Barracuda()
 		{
-				BarracudaText.loadFromFile("barTile.png");
+			value = 80;
+			BarracudaText.loadFromFile("barTile.png");
 		}
 
 		//~Barracuda();

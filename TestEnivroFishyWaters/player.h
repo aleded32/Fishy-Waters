@@ -7,6 +7,11 @@
 using namespace std;
 using namespace sf;
 
+string fishCaught[4];
+Grouper grouper;
+Fish fishes;
+Barracuda barracuda;
+
 class Player {
 
 public:
@@ -15,6 +20,7 @@ public:
 	int playerY;
 	int fishHeld;
 	int fishHeldMax;
+	int moneyHeld;
 	
 	
 	Sprite boat;
@@ -27,7 +33,7 @@ public:
 		playerY = 2;
 		fishHeld = 0;
 		fishHeldMax = 4;
-		
+		moneyHeld = 0;
 		boat.setPosition(playerX * 32, playerY * 32);
 	}
 
@@ -40,7 +46,8 @@ public:
 	void Catch(Sprite fish, Sprite Barracuda, Sprite Grouper, int playerX, int playerY)
 	{
 		
-		
+
+
 		srand(time(NULL));
 		int randCatch = rand() % 101;
 
@@ -53,9 +60,17 @@ public:
 			}
 			else
 			{
-				fishHeld +=1;
+				fishHeld ++;
 				gamefield[playerY +1][playerX] = 0;
 				cout << "caught the fish" << endl;
+				
+				
+
+				for (int i = 0; i < fishHeld; i++) 
+				{
+					fishCaught[fishHeld] = "normal";
+				}
+
 			}
 		}
 
@@ -68,9 +83,17 @@ public:
 			}
 			else
 			{
-				fishHeld +=1;
+				fishHeld ++;
 				gamefield[playerY +1][playerX] = 0;
 				cout << "caught the fish" << endl;
+
+				
+
+				for (int i = 0; i < fishHeld; i++)
+				{
+					fishCaught[fishHeld] = "Grouper";
+				}
+
 			}
 		}
 
@@ -83,9 +106,17 @@ public:
 			}
 			else
 			{
-				fishHeld +=1;
+				fishHeld ++;
 				gamefield[playerY +1][playerX] = 0;
 				cout << "caught the fish" << endl;
+
+				
+
+				for (int i = 0; i < fishHeld; i++) 
+				{
+					fishCaught[fishHeld] = "Barrcuda";
+				}
+
 			}
 		}
 		
