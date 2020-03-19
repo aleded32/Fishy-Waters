@@ -7,7 +7,9 @@
 using namespace std;
 using namespace sf;
 
-string fishCaught[4];
+string fishCaught[5];
+
+
 Grouper grouper;
 Fish fishes;
 Barracuda barracuda;
@@ -21,6 +23,7 @@ public:
 	int fishHeld;
 	int fishHeldMax;
 	int moneyHeld;
+	
 	
 	
 	Sprite boat;
@@ -46,11 +49,12 @@ public:
 	void Catch(Sprite fish, Sprite Barracuda, Sprite Grouper, int playerX, int playerY)
 	{
 		
-
+		 
 
 		srand(time(NULL));
 		int randCatch = rand() % 101;
 
+		
 		if(gamefield[playerY + 1][playerX] == 4)
 		{
 			if(randCatch < 10)
@@ -60,16 +64,13 @@ public:
 			}
 			else
 			{
-				fishHeld ++;
+				
 				gamefield[playerY +1][playerX] = 0;
 				cout << "caught the fish" << endl;
 				
+				fishHeld += 1;
+				fishCaught[fishHeld] = "normal";
 				
-
-				for (int i = 0; i < fishHeld; i++) 
-				{
-					fishCaught[fishHeld] = "normal";
-				}
 
 			}
 		}
@@ -83,16 +84,13 @@ public:
 			}
 			else
 			{
-				fishHeld ++;
+				
 				gamefield[playerY +1][playerX] = 0;
 				cout << "caught the fish" << endl;
 
+				fishHeld += 1;
+				fishCaught[fishHeld] = "grouper";
 				
-
-				for (int i = 0; i < fishHeld; i++)
-				{
-					fishCaught[fishHeld] = "Grouper";
-				}
 
 			}
 		}
@@ -106,22 +104,24 @@ public:
 			}
 			else
 			{
-				fishHeld ++;
+				
 				gamefield[playerY +1][playerX] = 0;
 				cout << "caught the fish" << endl;
 
+				fishHeld += 1;
+				fishCaught[fishHeld] = "barracuda";
 				
-
-				for (int i = 0; i < fishHeld; i++) 
-				{
-					fishCaught[fishHeld] = "Barrcuda";
-				}
-
+				
 			}
 		}
 		
-			
-			
+		for (int i = 0; i < fishHeld; i++)
+		{
+			fishCaught[i] = fishCaught[fishHeld];
+			cout << fishCaught[i] << endl;
+		}
+
+		
 			
 	}
 

@@ -3,8 +3,8 @@ c:\github\fishy-waters\testenivrofishywaters\fish.h(66): warning C4244: 'argumen
 c:\github\fishy-waters\testenivrofishywaters\fish.h(76): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
 c:\github\fishy-waters\testenivrofishywaters\fish.h(80): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
 c:\github\fishy-waters\testenivrofishywaters\fish.h(84): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-c:\github\fishy-waters\testenivrofishywaters\player.h(37): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-c:\github\fishy-waters\testenivrofishywaters\player.h(51): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\github\fishy-waters\testenivrofishywaters\player.h(40): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\github\fishy-waters\testenivrofishywaters\player.h(54): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\github\fishy-waters\testenivrofishywaters\main.cpp(36): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
 c:\github\fishy-waters\testenivrofishywaters\main.cpp(41): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
 c:\github\fishy-waters\testenivrofishywaters\main.cpp(45): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
@@ -13,5 +13,5 @@ c:\github\fishy-waters\testenivrofishywaters\main.cpp(154): warning C4390: ';' :
 c:\github\fishy-waters\testenivrofishywaters\main.cpp(166): warning C4390: ';' : empty controlled statement found; is this the intent?
 c:\github\fishy-waters\testenivrofishywaters\main.cpp(181): warning C4390: ';' : empty controlled statement found; is this the intent?
 c:\github\fishy-waters\testenivrofishywaters\main.cpp(195): warning C4390: ';' : empty controlled statement found; is this the intent?
-c:\github\fishy-waters\testenivrofishywaters\main.cpp(226): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\github\fishy-waters\testenivrofishywaters\main.cpp(217): warning C4305: 'argument' : truncation from 'double' to 'float'
   TestEnivroFishyWaters.vcxproj -> C:\Github\Fishy-Waters\Debug\TestEnivroFishyWaters.exe

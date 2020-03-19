@@ -211,15 +211,6 @@ while (app.isOpen()) {
 		
 	}
 
-	else if (Keyboard::isKeyPressed(Keyboard::K))
-	{
-		for (int i = 0; i < player.fishHeld; i++)
-		{
-			
-			cout << fishCaught[player.fishHeld] << endl;
-
-		}
-	}
 	//sets the views for gamescreen and minimap
 	View minimap;
 	View gameScreen;

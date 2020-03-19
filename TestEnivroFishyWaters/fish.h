@@ -58,7 +58,7 @@ void fishSpawn(Sprite fish, Sprite grouper, Sprite barracuda, Clock& clock, Text
 {
 	int fishSpawn = (int)clock.getElapsedTime().asSeconds();
 
-	if (fishSpawn >= 10)
+	if (fishSpawn >= 3)
 	{
 		for (int i = 0; i < 22; i++) {
 			for (int j = 0; j < 22; j++)
