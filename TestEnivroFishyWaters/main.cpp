@@ -20,6 +20,7 @@ Sprite water;
 Sprite sand;
 Sprite stone;
 Sprite dock;
+bool isupgrade;
 
 
 
@@ -66,22 +67,33 @@ int main()
 	app.setFramerateLimit(15);
 
 	//class classes
+	Player player;
+	upgrade1 upgrade;
 	Fish fish;
 	Grouper grouper;
 	Barracuda barracuda;
 	Fishes fishes;
 
-
+	isupgrade = true;
 	wText.loadFromFile("water.png");
 	sText.loadFromFile("sand.png");
 	stText.loadFromFile("stone.png");
-	bText.loadFromFile("boat.png");
+	if(isupgrade)
+	{
+		bText.loadFromFile("upgrade1.png");
+	}
+	else if(!isupgrade)
+	{
+		bText.loadFromFile("boat.png");
+	}
+	
 	dText.loadFromFile("docks.png");
 
-	Texture tiles[9] = { wText, sText, stText, bText,  fishText, grouperText, BarracudaText , dText, wText};
+	Texture tiles[9] = { wText, sText, stText, bText, fishText, grouperText, BarracudaText , dText, wText};
 
 	
-	Player player;
+
+	
 
 	//initilise gamefield
 	for(int i = 0; i < 22; i ++){
@@ -134,14 +146,83 @@ while (app.isOpen()) {
 		}
 
 	}
-
 	
-	//player movement and collision
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	if(isupgrade)
 	{
 		
-
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+	
+		if (gamefield[upgrade.playerY-1][upgrade.playerX] == 0) 
+		{
+			upgrade.playerY -= 1;
+			gamefield[upgrade.playerY + 1][upgrade.playerX] = 0;
+			gamefield[upgrade.playerY][upgrade.playerX] = 3;
+		}
+			else if (gamefield[upgrade.playerY - 1][upgrade.playerX] != 0);
 		
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+
+		if (gamefield[upgrade.playerY][upgrade.playerX + 1] == 0)
+		{
+			upgrade.playerX += 1;
+			gamefield[upgrade.playerY][upgrade.playerX - 1] = 0;
+			gamefield[upgrade.playerY][upgrade.playerX] = 3;
+		}
+			else if (gamefield[upgrade.playerY][upgrade.playerX + 1] != 0);
+
+		}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		
+		
+
+		if (gamefield[upgrade.playerY + 1][upgrade.playerX] == 0)
+		{
+			upgrade.playerY += 1;
+			gamefield[upgrade.playerY - 1][upgrade.playerX] = 0;
+			gamefield[upgrade.playerY][upgrade.playerX] = 3;
+		}
+		else if (gamefield[upgrade.playerY + 1][upgrade.playerX] != 0);
+
+
+	}
+
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+
+		if (gamefield[upgrade.playerY][upgrade.playerX -1] == 0)
+		{
+			upgrade.playerX -= 1;
+			gamefield[upgrade.playerY][upgrade.playerX + 1] = 0;
+			gamefield[upgrade.playerY][upgrade.playerX] = 3;
+		}
+		else if (gamefield[upgrade.playerY][upgrade.playerX -1] != 0);
+
+
+	}
+
+	else if (Keyboard::isKeyPressed(Keyboard::Up))
+	{
+		if(upgrade.fishHeld >= upgrade.fishHeldMax)
+		{
+			cout << "bag is full" << endl;
+		}
+		if(upgrade.fishHeld < upgrade.fishHeldMax)
+		{
+			
+			upgrade.Catch(fish.fish, barracuda.barracuda, grouper.grouper, upgrade.playerX, upgrade.playerY);
+			cout << "Fish Held " << upgrade.fishHeld << "/" << upgrade.fishHeldMax << endl;
+		}
+	}
+	}
+	else if(!isupgrade)
+	{
+		//player movement and collision
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
 	
 		if (gamefield[player.playerY-1][player.playerX] == 0) 
 		{
@@ -206,10 +287,13 @@ while (app.isOpen()) {
 			player.Catch(fish.fish, barracuda.barracuda, grouper.grouper, player.playerX, player.playerY);
 			cout << "Fish Held " << player.fishHeld << "/" << player.fishHeldMax << endl;
 		}
-
-		
 		
 	}
+
+	}
+
+
+
 
 	//sets the views for gamescreen and minimap
 	View minimap;
@@ -218,6 +302,8 @@ while (app.isOpen()) {
 	gameScreen.setViewport(FloatRect(0.0,0.0,1.425f,1.425f));
 
 	app.clear();
+
+
 	
 	//for gamescreen
 	app.setView(gameScreen);
@@ -228,8 +314,20 @@ while (app.isOpen()) {
 	{
 		for (int j = 0; j < 22; j++)
 		{
-			app.draw(player.boat);
+			
+			if(isupgrade)
+			{
+				app.draw(upgrade.boat);
+			}
+			else if(!isupgrade)
+			{
+				app.draw(player.boat);
+			}
 			spawn(&tiles[gamefield[i][j]], j, i, clock);
+
+			
+
+			
 		}
 
 	}
@@ -242,6 +340,7 @@ while (app.isOpen()) {
 		for (int j = 0; j < 22; j++)
 		{
 			app.draw(player.boat);
+		
 			spawn(&tiles[gamefield[i][j]], j, i, clock);
 		}
 	}

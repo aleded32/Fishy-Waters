@@ -44,6 +44,7 @@ int gamefield[22][22] =
 	Texture grouperText;
 	Texture BarracudaText;
 	Texture stText;
+	Texture bupgradeText;
 
 
 class Fishes

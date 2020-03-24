@@ -23,6 +23,9 @@ public:
 	int fishHeld;
 	int fishHeldMax;
 	int moneyHeld;
+	int randfish;
+	int randGrouper;
+	int randBarracuda;
 	
 	
 	
@@ -38,6 +41,10 @@ public:
 		fishHeldMax = 4;
 		moneyHeld = 0;
 		boat.setPosition(playerX * 32, playerY * 32);
+		randfish = 20;
+		randGrouper = 50;
+		randBarracuda = 90;
+
 	}
 
 	Player::~Player() 
@@ -57,7 +64,7 @@ public:
 		
 		if(gamefield[playerY + 1][playerX] == 4)
 		{
-			if(randCatch < 10)
+			if(randCatch < randfish)
 			{
 				gamefield[playerY +1][playerX] = 0;
 				cout << "did not catch" << endl;
@@ -77,7 +84,7 @@ public:
 
 		if(gamefield[playerY + 1][playerX] == 5)
 		{
-			if(randCatch < 40)
+			if(randCatch < randGrouper)
 			{
 				gamefield[playerY +1][playerX] = 0;
 				cout << "did not catch" << endl;
@@ -97,7 +104,7 @@ public:
 
 		if(gamefield[playerY + 1][playerX] == 6)
 		{
-			if(randCatch < 80)
+			if(randCatch < randBarracuda)
 			{
 				gamefield[playerY +1][playerX] = 0;
 				cout << "did not catch" << endl;
@@ -124,5 +131,24 @@ public:
 		
 			
 	}
+
+};
+
+class upgrade1 : public Player
+{
+public:
+	upgrade1()
+	{
+		
+		randfish = 10;
+		randGrouper = 30;
+		randBarracuda = 70;
+		fishHeldMax = 7;
+	}
+
+	~upgrade1()
+	{}
+
+
 
 };
