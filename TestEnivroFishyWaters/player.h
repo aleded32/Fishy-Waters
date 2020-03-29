@@ -7,7 +7,7 @@
 using namespace std;
 using namespace sf;
 
-string fishCaught[5];
+string fishCaught[8];
 
 
 Grouper grouper;
@@ -23,6 +23,7 @@ public:
 	int fishHeld;
 	int fishHeldMax;
 	int moneyHeld;
+	int moneyValue;
 	int randfish;
 	int randGrouper;
 	int randBarracuda;
@@ -40,6 +41,7 @@ public:
 		fishHeld = 0;
 		fishHeldMax = 4;
 		moneyHeld = 0;
+		moneyValue = 0;
 		boat.setPosition(playerX * 32, playerY * 32);
 		randfish = 20;
 		randGrouper = 50;
@@ -76,6 +78,7 @@ public:
 				cout << "caught the fish" << endl;
 				
 				fishHeld += 1;
+				moneyValue += fishes.value;
 				fishCaught[fishHeld] = "normal";
 				
 
@@ -96,6 +99,7 @@ public:
 				cout << "caught the fish" << endl;
 
 				fishHeld += 1;
+				moneyValue += grouper.value;
 				fishCaught[fishHeld] = "grouper";
 				
 
@@ -116,6 +120,7 @@ public:
 				cout << "caught the fish" << endl;
 
 				fishHeld += 1;
+				moneyValue += barracuda.value;
 				fishCaught[fishHeld] = "barracuda";
 				
 				
@@ -129,7 +134,6 @@ public:
 		}
 
 		
-			
 	}
 
 };

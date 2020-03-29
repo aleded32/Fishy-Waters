@@ -20,14 +20,17 @@ Sprite water;
 Sprite sand;
 Sprite stone;
 Sprite dock;
+Sprite sell;
+Sprite buy;
+
 bool isupgrade;
 
-
+bool isdocked  = false;
 
 
 
 //spawns in tiles for map
-void spawn(Texture tiles[9], int tileX, int tileY, Clock clock) 
+void spawn(Texture tiles[10], int tileX, int tileY, Clock clock) 
 {
 
 	water.setTexture(tiles[8]);
@@ -48,10 +51,12 @@ void spawn(Texture tiles[9], int tileX, int tileY, Clock clock)
 	dock.setTexture(tiles[7]);
 
 	dock.setPosition(tileX * 32, tileY * 32);
+
+	dock.setTexture(tiles[9]);
+
+	dock.setPosition(tileX * 32, tileY * 32);
 	
-	app.draw(dock);
-	app.draw(stone);
-	app.draw(sand);
+
 	app.draw(water);
 
 }
@@ -64,7 +69,7 @@ int main()
 {
 	//local variables
 	Clock clock;
-	app.setFramerateLimit(15);
+	app.setFramerateLimit(20);
 
 	//class classes
 	Player player;
@@ -74,22 +79,76 @@ int main()
 	Barracuda barracuda;
 	Fishes fishes;
 
-	isupgrade = true;
+	
+
+	//Text & font
+	Text fishNum;
+	Text sellMenu;
+	Text sellButton;
+	Text moneyHeldT;
+	Text buyMenu;
+	Text buyButton;
+	Font font;
+	font.loadFromFile("chow.TTF");
+	//inventory
+	fishNum.setFont(font);
+	fishNum.setPosition(150, 0);
+	fishNum.setCharacterSize(25);
+	fishNum.setFillColor(Color::Black);
+	//sell menu
+	sellMenu.setFont(font);
+	sellMenu.setPosition(220, 300);
+	sellMenu.setCharacterSize(14);
+	sellMenu.setFillColor(Color::White);
+	//buy menu
+	buyMenu.setFont(font);
+	buyMenu.setPosition(300, 300);
+	buyMenu.setCharacterSize(14);
+	buyMenu.setFillColor(Color::White);
+	//buy button
+	buyButton.setFont(font);
+	buyButton.setPosition(250, 400);
+	buyButton.setCharacterSize(18);
+	buyButton.setFillColor(Color::White);
+	//sell button
+	sellButton.setFont(font);
+	sellButton.setPosition(250, 400);
+	sellButton.setCharacterSize(18);
+	sellButton.setFillColor(Color::White);
+	//moneyHeld
+	moneyHeldT.setFont(font);
+	moneyHeldT.setPosition(500, 0);
+	moneyHeldT.setCharacterSize(25);
+	moneyHeldT.setFillColor(Color::Black);
+
+
+	isupgrade = false;
+
+	
 	wText.loadFromFile("water.png");
 	sText.loadFromFile("sand.png");
 	stText.loadFromFile("stone.png");
-	if(isupgrade)
-	{
-		bText.loadFromFile("upgrade1.png");
-	}
-	else if(!isupgrade)
-	{
+	
+	
+
+
+	
+		bupgradeText.loadFromFile("upgrade1.png");
+	
 		bText.loadFromFile("boat.png");
-	}
+	
 	
 	dText.loadFromFile("docks.png");
+	
+	sellText.loadFromFile("menu.png");
+	sell.setTexture(sellText);
+	sell.setPosition(200,50);
 
-	Texture tiles[9] = { wText, sText, stText, bText, fishText, grouperText, BarracudaText , dText, wText};
+	buyText.loadFromFile("buy.png");
+	buy.setTexture(buyText);
+	buy.setPosition(200,50);
+
+	Texture tiles[11] = { wText, sText, stText, bText, fishText, grouperText, BarracudaText , dText, wText, dText, bupgradeText};
 
 	
 
@@ -99,9 +158,12 @@ int main()
 	for(int i = 0; i < 22; i ++){
 		for(int j = 0; j < 22; j ++){
 			
+
+		
 			gamefield[player.playerY][player.playerX] = 3;
 			gamefield[tileX][tileY] = 4;
 			gamefield[tileX][tileY] = 7;
+			gamefield[tileX][tileY] = 9;
 			gamefield[tileX][tileY] = 8;
 			gamefield[tileX][tileY] = 6;
 			gamefield[tileX][tileY] = 1;
@@ -147,31 +209,31 @@ while (app.isOpen()) {
 
 	}
 	
-	if(isupgrade)
+	if(isupgrade && !isdocked)
 	{
 		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 	
-		if (gamefield[upgrade.playerY-1][upgrade.playerX] == 0) 
+		if (gamefield[player.playerY-1][player.playerX] == 0) 
 		{
-			upgrade.playerY -= 1;
-			gamefield[upgrade.playerY + 1][upgrade.playerX] = 0;
-			gamefield[upgrade.playerY][upgrade.playerX] = 3;
+			player.playerY -= 1;
+			gamefield[player.playerY + 1][player.playerX] = 0;
+			gamefield[player.playerY][player.playerX] = 10;
 		}
-			else if (gamefield[upgrade.playerY - 1][upgrade.playerX] != 0);
+			else if (gamefield[player.playerY - 1][player.playerX] != 0);
 		
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 
-		if (gamefield[upgrade.playerY][upgrade.playerX + 1] == 0)
+		if (gamefield[player.playerY][player.playerX + 1] == 0)
 		{
-			upgrade.playerX += 1;
-			gamefield[upgrade.playerY][upgrade.playerX - 1] = 0;
-			gamefield[upgrade.playerY][upgrade.playerX] = 3;
+			player.playerX += 1;
+			gamefield[player.playerY][player.playerX - 1] = 0;
+			gamefield[player.playerY][player.playerX] = 10;
 		}
-			else if (gamefield[upgrade.playerY][upgrade.playerX + 1] != 0);
+			else if (gamefield[player.playerY][player.playerX + 1] != 0);
 
 		}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -179,13 +241,13 @@ while (app.isOpen()) {
 		
 		
 
-		if (gamefield[upgrade.playerY + 1][upgrade.playerX] == 0)
+		if (gamefield[player.playerY + 1][player.playerX] == 0)
 		{
-			upgrade.playerY += 1;
-			gamefield[upgrade.playerY - 1][upgrade.playerX] = 0;
-			gamefield[upgrade.playerY][upgrade.playerX] = 3;
+			player.playerY += 1;
+			gamefield[player.playerY - 1][player.playerX] = 0;
+			gamefield[player.playerY][player.playerX] = 10;
 		}
-		else if (gamefield[upgrade.playerY + 1][upgrade.playerX] != 0);
+		else if (gamefield[player.playerY + 1][player.playerX] != 0);
 
 
 	}
@@ -193,13 +255,13 @@ while (app.isOpen()) {
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 
-		if (gamefield[upgrade.playerY][upgrade.playerX -1] == 0)
+		if (gamefield[player.playerY][player.playerX -1] == 0)
 		{
-			upgrade.playerX -= 1;
-			gamefield[upgrade.playerY][upgrade.playerX + 1] = 0;
-			gamefield[upgrade.playerY][upgrade.playerX] = 3;
+			player.playerX -= 1;
+			gamefield[player.playerY][player.playerX + 1] = 0;
+			gamefield[player.playerY][player.playerX] = 10;
 		}
-		else if (gamefield[upgrade.playerY][upgrade.playerX -1] != 0);
+		else if (gamefield[player.playerY][player.playerX -1] != 0);
 
 
 	}
@@ -213,12 +275,12 @@ while (app.isOpen()) {
 		if(upgrade.fishHeld < upgrade.fishHeldMax)
 		{
 			
-			upgrade.Catch(fish.fish, barracuda.barracuda, grouper.grouper, upgrade.playerX, upgrade.playerY);
+			upgrade.Catch(fish.fish, barracuda.barracuda, grouper.grouper, player.playerX, player.playerY);
 			cout << "Fish Held " << upgrade.fishHeld << "/" << upgrade.fishHeldMax << endl;
 		}
 	}
 	}
-	else if(!isupgrade)
+	else if(!isupgrade && !isdocked)
 	{
 		//player movement and collision
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -231,7 +293,7 @@ while (app.isOpen()) {
 			gamefield[player.playerY][player.playerX] = 3;
 		}
 			else if (gamefield[player.playerY - 1][player.playerX] != 0);
-		
+	
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
@@ -287,13 +349,18 @@ while (app.isOpen()) {
 			player.Catch(fish.fish, barracuda.barracuda, grouper.grouper, player.playerX, player.playerY);
 			cout << "Fish Held " << player.fishHeld << "/" << player.fishHeldMax << endl;
 		}
+
 		
 	}
 
+
+
 	}
 
 
-
+	//creates strings for game
+	string fishNumStr[8] = {"0", "1", "2", "3", "4", "5", "6", "7"};
+	
 
 	//sets the views for gamescreen and minimap
 	View minimap;
@@ -303,43 +370,177 @@ while (app.isOpen()) {
 
 	app.clear();
 
+	
+	
 
 	
 	//for gamescreen
 	app.setView(gameScreen);
+
+	sellButton.setString("Press S to sell all fish caught");
+	buyButton.setString("Press B to buy upgrade");
+
+	
 	//calls fish spawning from class
+	if(!isdocked)
+	{
 	fishes.fishSpawn(fish.fish, grouper.grouper,barracuda.barracuda,clock,&tiles[9], app, tileX, tileY);
+	}
 	//spawns in the tiles
 	for (int i = 0; i < 22; i++)
 	{
 		for (int j = 0; j < 22; j++)
 		{
-			
-			if(isupgrade)
-			{
-				app.draw(upgrade.boat);
-			}
-			else if(!isupgrade)
-			{
-				app.draw(player.boat);
-			}
 			spawn(&tiles[gamefield[i][j]], j, i, clock);
-
-			
-
-			
 		}
 
 	}
 
+	if(isupgrade)
+			{
+				string moneyHeldstr = to_string(player.moneyHeld);
+				string totalValue = to_string(upgrade.moneyValue);
+				sellMenu.setString("Total fish Caught is " + fishNumStr[upgrade.fishHeld] + " and Total value is " + totalValue);
+				buyMenu.setString("Upgrade has been Purchased!");
+				moneyHeldT.setString("$ " + moneyHeldstr);
+				fishNum.setString("Bag: "+ fishNumStr[upgrade.fishHeld] + "/ " + fishNumStr[upgrade.fishHeldMax]);
+				
+				
+			}
+			else
+			{
+				string moneyHeldstr = to_string(player.moneyHeld);
+				string totalValue = to_string(player.moneyValue);
+				moneyHeldT.setString("$ " + moneyHeldstr);
+				sellMenu.setString("Total fish Caught is " + fishNumStr[player.fishHeld] + " and Total value is " + totalValue);
+				buyMenu.setString("Upgrade costs $250");
+				fishNum.setString("Bag: "+ fishNumStr[player.fishHeld] + "/ " + fishNumStr[player.fishHeldMax]);
+				
+			}
+
+	if(gamefield[player.playerY - 1][player.playerX] == 7 || gamefield[upgrade.playerY - 1][upgrade.playerX] == 7 )
+	{
+		
+		isdocked = true;
+		app.draw(sell);
+		app.draw(sellMenu);
+		app.draw(sellButton);
+		
+
+		if(Keyboard::isKeyPressed(Keyboard::E))
+		{
+			
+			if(!isupgrade)
+			{
+				if (gamefield[player.playerY + 1][player.playerX] == 0)
+				{
+					player.playerY += 1;
+					gamefield[player.playerY - 1][player.playerX] = 0;
+					gamefield[player.playerY][player.playerX] = 3;
+				}
+			}
+			else
+			{
+				if (gamefield[upgrade.playerY + 1][upgrade.playerX] == 0)
+				{
+					player.playerY += 1;
+					gamefield[player.playerY - 1][player.playerX] = 0;
+					gamefield[player.playerY][player.playerX] = 10;
+				}
+			}
+
+			isdocked = false;
+		}
+		else if(Keyboard::isKeyPressed(Keyboard::S))
+			{
+				if(isupgrade)
+				{
+					upgrade.moneyHeld += upgrade.moneyValue;
+					upgrade.fishHeld = 0;
+					upgrade.moneyValue = 0;
+				}
+				else
+				{
+					player.moneyHeld += player.moneyValue;
+					player.fishHeld = 0;
+					player.moneyValue = 0;
+				}
+			}
+
+	}
+	else if(gamefield[player.playerY - 1][player.playerX] == 9 || gamefield[upgrade.playerY - 1][upgrade.playerX] == 9 )
+	{
+		
+		isdocked = true;
+		app.draw(buy);
+		app.draw(buyMenu);
+		app.draw(buyButton);
+
+		
+
+		if(Keyboard::isKeyPressed(Keyboard::E))
+		{
+			if(!isupgrade)
+			{
+			
+			
+				if (gamefield[player.playerY + 1][player.playerX] == 0)
+				{
+					player.playerY += 1;
+					gamefield[player.playerY - 1][player.playerX] = 0;
+					gamefield[player.playerY][player.playerX] = 3;
+				}
+
+			}
+			else
+			{
+			
+			
+				if (gamefield[upgrade.playerY + 1][upgrade.playerX] == 0)
+				{
+					upgrade.playerY += 1;
+					gamefield[upgrade.playerY - 1][upgrade.playerX] = 0;
+					gamefield[upgrade.playerY][upgrade.playerX] = 3;
+				}
+
+			}
+			
+
+			isdocked = false;
+		}
+		if(Keyboard::isKeyPressed(Keyboard::B))
+		{
+			if(!isupgrade)
+				{
+					if(player.moneyHeld > 249)
+					{
+					player.moneyHeld -= 250; 
+					
+					
+						if (gamefield[player.playerY + 1][player.playerX] == 0)
+						{
+							player.playerY += 1;
+							gamefield[player.playerY - 1][player.playerX] = 0;
+							gamefield[player.playerY][player.playerX] = 10;
+						}
+						isupgrade = true;
+						isdocked = false;
+					
+					}
+				}
+			
+		}
+	}
+
+	app.draw(fishNum);
+	app.draw(moneyHeldT);
 	//for minimap
 	app.setView(minimap);
-	fishes.fishSpawn(fish.fish, grouper.grouper,barracuda.barracuda,clock,&tiles[9], app, tileX, tileY);
 	for (int i = 0; i < 22; i++)
 	{
 		for (int j = 0; j < 22; j++)
 		{
-			app.draw(player.boat);
+			
 		
 			spawn(&tiles[gamefield[i][j]], j, i, clock);
 		}
