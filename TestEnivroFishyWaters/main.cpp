@@ -383,7 +383,7 @@ while (app.isOpen()) {
 				
 			}
 
-	if(gamefield[player.playerY - 1][player.playerX] == 7 || gamefield[upgrade.playerY - 1][upgrade.playerX] == 7 )
+	if(gamefield[player.playerY - 1][player.playerX] == 7 )
 	{
 		
 		isdocked = true;
@@ -433,7 +433,7 @@ while (app.isOpen()) {
 			}
 
 	}
-	else if(gamefield[player.playerY - 1][player.playerX] == 9 || gamefield[upgrade.playerY - 1][upgrade.playerX] == 9 )
+	else if(gamefield[player.playerY - 1][player.playerX] == 9 )
 	{
 		
 		isdocked = true;
@@ -461,11 +461,11 @@ while (app.isOpen()) {
 			{
 			
 			
-				if (gamefield[upgrade.playerY + 1][upgrade.playerX] == 0)
+				if (gamefield[player.playerY + 1][player.playerX] == 0)
 				{
-					upgrade.playerY += 1;
-					gamefield[upgrade.playerY - 1][upgrade.playerX] = 0;
-					gamefield[upgrade.playerY][upgrade.playerX] = 3;
+					player.playerY += 1;
+					gamefield[player.playerY - 1][player.playerX] = 0;
+					gamefield[player.playerY][player.playerX] = 3;
 				}
 
 			}
@@ -477,9 +477,9 @@ while (app.isOpen()) {
 		{
 			if(!isupgrade)
 				{
-					if(player.moneyHeld > 249)
+					if(player.moneyHeld > 499)
 					{
-					player.moneyHeld -= 250; 
+					player.moneyHeld -= 500; 
 					
 					
 						if (gamefield[player.playerY + 1][player.playerX] == 0)
