@@ -25,11 +25,9 @@ Sprite buy;
 void spawn(Texture tiles[10], int tileX, int tileY) 
 {
 
-
 	game.setTexture(tiles[0]);
 	
 	game.setPosition(tileX * 32 , tileY * 32 );
-	
 
 	app.draw(game);
 

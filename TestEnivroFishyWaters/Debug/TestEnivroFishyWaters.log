@@ -1,4 +1,4 @@
-﻿Build started 29/03/2020 19:16:10.
+﻿Build started 29/03/2020 20:00:03.
      1>Project "C:\Github\Fishy-Waters\TestEnivroFishyWaters\TestEnivroFishyWaters.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\SFML-2.4.0(Win32 - Visual Studio 2012)\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -8,7 +8,7 @@
      1>c:\github\fishy-waters\testenivrofishywaters\fish.h(85): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\github\fishy-waters\testenivrofishywaters\fish.h(89): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\github\fishy-waters\testenivrofishywaters\player.h(45): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\github\fishy-waters\testenivrofishywaters\player.h(63): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\github\fishy-waters\testenivrofishywaters\player.h(64): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
      1>c:\github\fishy-waters\testenivrofishywaters\main.cpp(31): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\github\fishy-waters\testenivrofishywaters\main.cpp(192): warning C4390: ';' : empty controlled statement found; is this the intent?
      1>c:\github\fishy-waters\testenivrofishywaters\main.cpp(204): warning C4390: ';' : empty controlled statement found; is this the intent?
@@ -26,4 +26,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.33
+Time Elapsed 00:00:02.25

@@ -59,10 +59,15 @@ public:
 	{
 		
 		 
+		int randCatch;
 
 		srand(time(NULL));
-		int randCatch = rand() % 101;
 
+		for(int i = 0; i < 2; i++)
+		{
+		 randCatch = rand() % 101;
+		}
+		cout << randCatch << endl;
 		
 		if(gamefield[playerY + 1][playerX] == 4)
 		{
@@ -135,6 +140,8 @@ public:
 
 		
 	}
+
+	
 
 };
 
