@@ -16,48 +16,22 @@ RenderWindow app(VideoMode(700, 700), "fishy Waters");
 int tileX = 0;
 int tileY = 0;
 
-Sprite water;
-Sprite sand;
-Sprite stone;
-Sprite dock;
+Sprite game;
 Sprite sell;
 Sprite buy;
-
-bool isupgrade;
-
-bool isdocked  = false;
-
 
 
 //spawns in tiles for map
 void spawn(Texture tiles[10], int tileX, int tileY, Clock clock) 
 {
 
-	water.setTexture(tiles[8]);
 
-	water.setTexture(tiles[0]);
+	game.setTexture(tiles[0]);
 	
-	water.setPosition(tileX * 32 , tileY * 32 );
-
-
-	sand.setTexture(tiles[1]);
-
-	sand.setPosition(tileX * 32, tileY * 32);
-
-	stone.setTexture(tiles[2]);
-
-	stone.setPosition(tileX * 32, tileY * 32);
-
-	dock.setTexture(tiles[7]);
-
-	dock.setPosition(tileX * 32, tileY * 32);
-
-	dock.setTexture(tiles[9]);
-
-	dock.setPosition(tileX * 32, tileY * 32);
+	game.setPosition(tileX * 32 , tileY * 32 );
 	
 
-	app.draw(water);
+	app.draw(game);
 
 }
 
@@ -121,30 +95,22 @@ int main()
 	moneyHeldT.setCharacterSize(25);
 	moneyHeldT.setFillColor(Color::Black);
 
+	bool isdocked  = false;
+	bool isupgrade = false;
 
-	isupgrade = false;
-
-	
+	//texture Loading;
 	wText.loadFromFile("water.png");
 	sText.loadFromFile("sand.png");
 	stText.loadFromFile("stone.png");
-	
-	
-
-
-	
-		bupgradeText.loadFromFile("upgrade1.png");
-	
-		bText.loadFromFile("boat.png");
-	
-	
+	bupgradeText.loadFromFile("upgrade1.png");
+	bText.loadFromFile("boat.png");
 	dText.loadFromFile("docks.png");
-	
 	sellText.loadFromFile("menu.png");
+	buyText.loadFromFile("buy.png");
+
 	sell.setTexture(sellText);
 	sell.setPosition(200,50);
 
-	buyText.loadFromFile("buy.png");
 	buy.setTexture(buyText);
 	buy.setPosition(200,50);
 
@@ -277,6 +243,7 @@ while (app.isOpen()) {
 			
 			upgrade.Catch(fish.fish, barracuda.barracuda, grouper.grouper, player.playerX, player.playerY);
 			cout << "Fish Held " << upgrade.fishHeld << "/" << upgrade.fishHeldMax << endl;
+			
 		}
 	}
 	}
@@ -455,7 +422,7 @@ while (app.isOpen()) {
 			{
 				if(isupgrade)
 				{
-					upgrade.moneyHeld += upgrade.moneyValue;
+					player.moneyHeld += upgrade.moneyValue;
 					upgrade.fishHeld = 0;
 					upgrade.moneyValue = 0;
 				}

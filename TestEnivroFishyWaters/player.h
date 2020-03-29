@@ -40,7 +40,7 @@ public:
 		playerY = 2;
 		fishHeld = 0;
 		fishHeldMax = 4;
-		moneyHeld = 0;
+		moneyHeld = 250;
 		moneyValue = 0;
 		boat.setPosition(playerX * 32, playerY * 32);
 		randfish = 20;
