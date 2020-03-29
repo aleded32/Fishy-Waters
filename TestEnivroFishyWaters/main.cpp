@@ -22,7 +22,7 @@ Sprite buy;
 
 
 //spawns in tiles for map
-void spawn(Texture tiles[10], int tileX, int tileY, Clock clock) 
+void spawn(Texture tiles[10], int tileX, int tileY) 
 {
 
 
@@ -358,7 +358,7 @@ while (app.isOpen()) {
 	{
 		for (int j = 0; j < 22; j++)
 		{
-			spawn(&tiles[gamefield[i][j]], j, i, clock);
+			spawn(&tiles[gamefield[i][j]], j, i);
 		}
 
 	}
@@ -509,7 +509,7 @@ while (app.isOpen()) {
 		{
 			
 		
-			spawn(&tiles[gamefield[i][j]], j, i, clock);
+			spawn(&tiles[gamefield[i][j]], j, i);
 		}
 	}
 
