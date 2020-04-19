@@ -3,6 +3,7 @@
 #include <SFML\Graphics.hpp>
 #include <iostream>
 #include "fish.h"
+#include "debuffs.h"
 
 using namespace std;
 using namespace sf;
@@ -13,6 +14,7 @@ string fishCaught[8];
 Grouper grouper;
 Fish fishes;
 Barracuda barracuda;
+MineBomb mineBomb;
 
 class Player {
 
@@ -54,8 +56,80 @@ public:
 	
 	}
 
+	void blowUp(int playerX, int playerY, RenderWindow& app)
+	{
+		int randBlowUp;
+		int randChance = 50;
+
+		srand(time(NULL));
+
+		for(int i = 0; i < 2; i++)
+		{
+		 randBlowUp = rand() % 101;
+		}
+		
+		
+		if(gamefield[playerY + 2][playerX] == 11)
+		{
+			if(randBlowUp < randChance)
+			{
+				gamefield[playerY +2][playerX] = 0;
+				
+			}
+			else
+			{
+				
+				app.close();
+
+			}
+		}
+		else if(gamefield[playerY - 2][playerX] == 11)
+		{
+			if(randBlowUp < randChance)
+			{
+				gamefield[playerY - 2][playerX] = 0;
+				
+			}
+			else
+			{
+				
+				app.close();
+
+			}
+		}
+		else if(gamefield[playerY][playerX + 2] == 11)
+		{
+			if(randBlowUp < randChance)
+			{
+				gamefield[playerY][playerX + 2] = 0;
+				
+			}
+			else
+			{
+				
+				app.close();
+
+			}
+		}
+		else if(gamefield[playerY][playerX - 2] == 11)
+		{
+			if(randBlowUp < randChance)
+			{
+				gamefield[playerY][playerX - 2] = 0;
+				
+			}
+			else
+			{
+				
+				app.close();
+
+			}
+		}
+
+	}
+
 	
-	void Catch(Sprite fish, Sprite Barracuda, Sprite Grouper, int playerX, int playerY)
+	void Catch(int playerX, int playerY)
 	{
 		
 		 

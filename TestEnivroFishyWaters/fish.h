@@ -45,6 +45,7 @@ int gamefield[22][22] =
 	Texture BarracudaText;
 	Texture stText;
 	Texture bupgradeText;
+	Texture mineText;
 	Texture sellText;
 	Texture buyText;
 
@@ -59,9 +60,12 @@ public :
 	int value;
 
 
-void fishSpawn(Sprite fish, Sprite grouper, Sprite barracuda, Clock& clock, Texture tiles[9], RenderWindow& app, int tileX, int tileY)
+void fishSpawn(Sprite fish, Sprite grouper, Sprite barracuda,  Clock& Fishclock,  Texture tiles[12], RenderWindow& app, int tileX, int tileY)
 {
-	int fishSpawn = (int)clock.getElapsedTime().asSeconds();
+	int fishSpawn = (int)Fishclock.getElapsedTime().asSeconds();
+	int rSpawnX = rand() % 10 + 4;
+	int rSpawnY = rand() % 7 + 4;
+	
 
 	if (fishSpawn >= 7)
 	{
@@ -69,8 +73,7 @@ void fishSpawn(Sprite fish, Sprite grouper, Sprite barracuda, Clock& clock, Text
 			for (int j = 0; j < 22; j++)
 			{
 				srand(time(NULL));
-				int rSpawnX = rand() % 10 + 4;
-				int rSpawnY = rand() % 7 + 4;
+				
 				int rfish = rand() % 3 + 4;
 
 
@@ -93,9 +96,13 @@ void fishSpawn(Sprite fish, Sprite grouper, Sprite barracuda, Clock& clock, Text
 				app.draw(barracuda);
 			}
 		}
-		clock.restart();
+		Fishclock.restart();
 	}
-}
+
+}	
+
+
+
 
 };
 
@@ -112,7 +119,7 @@ class Fish : public Fishes
 			fishText.loadFromFile("fishTile.png");
 		}
 
-		//~Fish();
+		~Fish(){}
 };
 
 class Grouper : public Fishes
@@ -127,7 +134,7 @@ class Grouper : public Fishes
 			grouperText.loadFromFile("GrouperTile.png");
 		}
 
-		//~Grouper();
+		~Grouper(){}
 };
 
 class Barracuda : public Fishes
@@ -142,5 +149,6 @@ class Barracuda : public Fishes
 			BarracudaText.loadFromFile("barTile.png");
 		}
 
-		//~Barracuda();
+		~Barracuda(){}
 };
+

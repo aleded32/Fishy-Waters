@@ -5,6 +5,7 @@
 #include <time.h>
 #include "player.h"
 #include "fish.h"
+#include "debuffs.h"
 #include <SFML/System.hpp>
 
 using namespace std;
@@ -22,7 +23,7 @@ Sprite buy;
 
 
 //spawns in tiles for map
-void spawn(Texture tiles[10], int tileX, int tileY) 
+void spawn(Texture tiles[12], int tileX, int tileY) 
 {
 
 	game.setTexture(tiles[0]);
@@ -40,16 +41,19 @@ void spawn(Texture tiles[10], int tileX, int tileY)
 int main()
 {
 	//local variables
-	Clock clock;
+	Clock Fishclock;
+	Clock Mineclock;
 	app.setFramerateLimit(20);
 
 	//class classes
+
 	Player player;
 	upgrade1 upgrade;
 	Fish fish;
 	Grouper grouper;
 	Barracuda barracuda;
 	Fishes fishes;
+	MineBomb mineBomb;
 
 	
 
@@ -106,25 +110,24 @@ int main()
 	sellText.loadFromFile("menu.png");
 	buyText.loadFromFile("buy.png");
 
+
 	sell.setTexture(sellText);
 	sell.setPosition(200,50);
 
 	buy.setTexture(buyText);
 	buy.setPosition(200,50);
 
-	Texture tiles[11] = { wText, sText, stText, bText, fishText, grouperText, BarracudaText , dText, wText, dText, bupgradeText};
+	Texture tiles[12] = { wText, sText, stText, bText, fishText, grouperText, BarracudaText , dText, wText, dText, bupgradeText, mineText};
 
-	
 
-	
 
-	//initilise gamefield
-	for(int i = 0; i < 22; i ++){
+	//debug Gamefield
+/*	for(int i = 0; i < 22; i ++){
 		for(int j = 0; j < 22; j ++){
 			
 
 		
-			gamefield[player.playerY][player.playerX] = 3;
+		gamefield[player.playerY][player.playerX] = 3;
 			gamefield[tileX][tileY] = 4;
 			gamefield[tileX][tileY] = 7;
 			gamefield[tileX][tileY] = 9;
@@ -146,8 +149,7 @@ int main()
 }
 cout << endl;
 
-
-
+*/
 Event e;
 
 	
@@ -164,7 +166,7 @@ while (app.isOpen()) {
 			app.close();
 
 		}
-
+		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
 
@@ -239,7 +241,7 @@ while (app.isOpen()) {
 		if(upgrade.fishHeld < upgrade.fishHeldMax)
 		{
 			
-			upgrade.Catch(fish.fish, barracuda.barracuda, grouper.grouper, player.playerX, player.playerY);
+			upgrade.Catch(player.playerX, player.playerY);
 			cout << "Fish Held " << upgrade.fishHeld << "/" << upgrade.fishHeldMax << endl;
 			
 		}
@@ -311,7 +313,7 @@ while (app.isOpen()) {
 		if(player.fishHeld < player.fishHeldMax)
 		{
 			
-			player.Catch(fish.fish, barracuda.barracuda, grouper.grouper, player.playerX, player.playerY);
+			player.Catch(player.playerX, player.playerY);
 			cout << "Fish Held " << player.fishHeld << "/" << player.fishHeldMax << endl;
 		}
 
@@ -336,7 +338,7 @@ while (app.isOpen()) {
 	app.clear();
 
 	
-	
+	player.blowUp(player.playerX, player.playerY, app);
 
 	
 	//for gamescreen
@@ -349,7 +351,9 @@ while (app.isOpen()) {
 	//calls fish spawning from class
 	if(!isdocked)
 	{
-	fishes.fishSpawn(fish.fish, grouper.grouper,barracuda.barracuda,clock,&tiles[9], app, tileX, tileY);
+	fishes.fishSpawn(fish.fish, grouper.grouper,barracuda.barracuda, Fishclock, &tiles[12], app, tileX, tileY);
+	mineBomb.mineSpawn(mineBomb.mineBomb, Mineclock, &tiles[12], app, tileX, tileY);
+	
 	}
 	//spawns in the tiles
 	for (int i = 0; i < 22; i++)
