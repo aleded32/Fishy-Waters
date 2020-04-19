@@ -31,7 +31,7 @@ class MineBomb
 			int lastRspawnY;
 			
 
-			if(mineSpawn >= 9)
+			if(mineSpawn >= 20)
 			{
 				for (int i = 0; i < 22; i++) 
 				{
