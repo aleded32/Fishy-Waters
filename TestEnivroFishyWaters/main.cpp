@@ -58,6 +58,7 @@ int main()
 	
 
 	//Text & font
+	Text GameOver;
 	Text fishNum;
 	Text sellMenu;
 	Text sellButton;
@@ -71,6 +72,12 @@ int main()
 	fishNum.setPosition(150, 0);
 	fishNum.setCharacterSize(25);
 	fishNum.setFillColor(Color::Black);
+	//GameOver Text
+	GameOver.setFont(font);
+	GameOver.setPosition(150, 350);
+	GameOver.setCharacterSize(25);
+	GameOver.setFillColor(Color::Black);
+	GameOver.setString("Game Over, Press Esc to quit");
 	//sell menu
 	sellMenu.setFont(font);
 	sellMenu.setPosition(220, 300);
@@ -97,8 +104,10 @@ int main()
 	moneyHeldT.setCharacterSize(25);
 	moneyHeldT.setFillColor(Color::Black);
 
+	//booleans to control wether a player is docked to stop gameplay in background and isupgrade is tell the code to run other code for upgrade ship.
 	bool isdocked  = false;
 	bool isupgrade = false;
+
 
 	//texture Loading;
 	wText.loadFromFile("water.png");
@@ -121,35 +130,7 @@ int main()
 
 
 
-	//debug Gamefield
-/*	for(int i = 0; i < 22; i ++){
-		for(int j = 0; j < 22; j ++){
-			
 
-		
-		gamefield[player.playerY][player.playerX] = 3;
-			gamefield[tileX][tileY] = 4;
-			gamefield[tileX][tileY] = 7;
-			gamefield[tileX][tileY] = 9;
-			gamefield[tileX][tileY] = 8;
-			gamefield[tileX][tileY] = 6;
-			gamefield[tileX][tileY] = 1;
-			gamefield[tileX][tileY] = 2;
-			gamefield[tileX][tileY] = 0;
-			
-			
-	
-		cout << gamefield[i][j] << ' ';
-
-		
-		
-	}
-	cout << endl;
-
-}
-cout << endl;
-
-*/
 Event e;
 
 	
@@ -175,7 +156,7 @@ while (app.isOpen()) {
 
 	}
 	
-	if(isupgrade && !isdocked)
+	if(isupgrade && !isdocked && !isdead)
 	{
 		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -247,7 +228,7 @@ while (app.isOpen()) {
 		}
 	}
 	}
-	else if(!isupgrade && !isdocked)
+	else if(!isupgrade && !isdocked && !isdead)
 	{
 		//player movement and collision
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -338,7 +319,7 @@ while (app.isOpen()) {
 	app.clear();
 
 	
-	player.blowUp(player.playerX, player.playerY, app);
+	
 
 	
 	//for gamescreen
@@ -349,7 +330,7 @@ while (app.isOpen()) {
 
 	
 	//calls fish spawning from class
-	if(!isdocked)
+	if(!isdocked && !isdead)
 	{
 	fishes.fishSpawn(fish.fish, grouper.grouper,barracuda.barracuda, Fishclock, &tiles[12], app, tileX, tileY);
 	mineBomb.mineSpawn(mineBomb.mineBomb, Mineclock, &tiles[12], app, tileX, tileY);
@@ -360,7 +341,9 @@ while (app.isOpen()) {
 	{
 		for (int j = 0; j < 22; j++)
 		{
+			
 			spawn(&tiles[gamefield[i][j]], j, i);
+			
 		}
 
 	}
@@ -373,8 +356,10 @@ while (app.isOpen()) {
 				buyMenu.setString("Upgrade has been Purchased!");
 				moneyHeldT.setString("$ " + moneyHeldstr);
 				fishNum.setString("Bag: "+ fishNumStr[upgrade.fishHeld] + "/ " + fishNumStr[upgrade.fishHeldMax]);
-				
-				
+				if(!isdead)
+				{
+				upgrade.blowUp(player.playerX, player.playerY, app);
+				}
 			}
 			else
 			{
@@ -382,9 +367,12 @@ while (app.isOpen()) {
 				string totalValue = to_string(player.moneyValue);
 				moneyHeldT.setString("$ " + moneyHeldstr);
 				sellMenu.setString("Total fish Caught is " + fishNumStr[player.fishHeld] + " and Total value is " + totalValue);
-				buyMenu.setString("Upgrade costs $250");
+				buyMenu.setString("Upgrade costs $500");
 				fishNum.setString("Bag: "+ fishNumStr[player.fishHeld] + "/ " + fishNumStr[player.fishHeldMax]);
-				
+				if(!isdead)
+				{
+				player.blowUp(player.playerX, player.playerY, app);
+				}
 			}
 
 	if(gamefield[player.playerY - 1][player.playerX] == 7 )
@@ -501,6 +489,11 @@ while (app.isOpen()) {
 		}
 	}
 
+	if(isdead == true)
+	{
+		app.draw(GameOver);
+	}
+
 	app.draw(fishNum);
 	app.draw(moneyHeldT);
 	//for minimap
@@ -510,12 +503,12 @@ while (app.isOpen()) {
 		for (int j = 0; j < 22; j++)
 		{
 			
-		
 			spawn(&tiles[gamefield[i][j]], j, i);
+			
 		}
 	}
 
-	
+	cout << isdead << endl;
 	app.display();
 }
 	

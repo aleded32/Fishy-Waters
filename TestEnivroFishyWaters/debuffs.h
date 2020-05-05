@@ -3,9 +3,12 @@
 #include <SFML\Graphics.hpp>
 #include <iostream>
 #include "fish.h"
+#include "player.h"
 
 using namespace std;
 using namespace sf;
+bool isdead = false;
+
 
 class MineBomb
 {
@@ -16,7 +19,7 @@ class MineBomb
 
 		MineBomb()
 		{
-			mineText.loadFromFile("water.png");
+			mineText.loadFromFile("mineWater.png");
 			hitDistance = 2;
 		}
 
@@ -37,6 +40,7 @@ class MineBomb
 				{
 					for (int j = 0; j < 22; j++)
 					{
+						
 						gamefield[MinerSpawnY][MinerSpawnX] = 11;
 
 						lastRspawnX = MinerSpawnX;
@@ -48,8 +52,7 @@ class MineBomb
 
 						app.draw(mineBomb);
 						
-						
-						
+				
 						
 					}
 			

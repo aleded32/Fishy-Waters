@@ -69,59 +69,65 @@ public:
 		}
 		
 		
-		if(gamefield[playerY + 2][playerX] == 11)
+		if(gamefield[playerY + 1][playerX] == 11)
 		{
 			if(randBlowUp < randChance)
 			{
-				gamefield[playerY +2][playerX] = 0;
+				gamefield[playerY +1][playerX] = 0;
 				
 			}
 			else
 			{
 				
-				app.close();
+				isdead = true;
+				
 
 			}
 		}
-		else if(gamefield[playerY - 2][playerX] == 11)
+		else if(gamefield[playerY - 1][playerX] == 11)
 		{
 			if(randBlowUp < randChance)
 			{
-				gamefield[playerY - 2][playerX] = 0;
+				gamefield[playerY - 1][playerX] = 0;
 				
 			}
 			else
 			{
 				
-				app.close();
+				isdead = true;
+				
 
 			}
 		}
-		else if(gamefield[playerY][playerX + 2] == 11)
+		else if(gamefield[playerY][playerX + 1] == 11)
 		{
 			if(randBlowUp < randChance)
 			{
-				gamefield[playerY][playerX + 2] = 0;
+				gamefield[playerY][playerX + 1] = 0;
 				
 			}
 			else
 			{
 				
-				app.close();
+				isdead = true;
+				
+
 
 			}
 		}
-		else if(gamefield[playerY][playerX - 2] == 11)
+		else if(gamefield[playerY][playerX - 1] == 11)
 		{
 			if(randBlowUp < randChance)
 			{
-				gamefield[playerY][playerX - 2] = 0;
+				gamefield[playerY][playerX - 1] = 0;
 				
 			}
 			else
 			{
 				
-				app.close();
+				isdead = true;
+				
+
 
 			}
 		}
