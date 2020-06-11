@@ -45,7 +45,7 @@ class MineBomb
 			if(mineSpawn >= 10)
 			{
 				MinerSpawnX = rand() % 10 + 4;
-				MinerSpawnY = rand() % 7 + 4;
+				MinerSpawnY = rand() % 6 + 5;
 
 				gamefield[MinerSpawnX][MinerSpawnY] = 11;
 				

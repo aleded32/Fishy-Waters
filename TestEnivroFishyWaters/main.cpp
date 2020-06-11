@@ -379,7 +379,7 @@ while (app.isOpen()) {
 				string totalValue = to_string(player.moneyValue);
 				moneyHeldT.setString("$ " + moneyHeldstr);
 				sellMenu.setString("Total fish Caught is " + fishNumStr[player.fishHeld] + " and Total value is " + totalValue);
-				buyMenu.setString("Upgrade costs $500");
+				buyMenu.setString("Upgrade costs $250");
 				fishNum.setString("Bag: "+ fishNumStr[player.fishHeld] + "/ " + fishNumStr[player.fishHeldMax]);
 				if(!isdead)
 				{
@@ -481,9 +481,9 @@ while (app.isOpen()) {
 		{
 			if(!isupgrade)
 				{
-					if(player.moneyHeld > 499)
+					if(player.moneyHeld > 249)
 					{
-					player.moneyHeld -= 500; 
+					player.moneyHeld -= 250; 
 					
 					
 						if (gamefield[player.playerY + 1][player.playerX] == 0)
