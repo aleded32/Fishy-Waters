@@ -16,52 +16,51 @@ class MineBomb
 
 		Sprite mineBomb;
 		int hitDistance;
+		int MinerSpawnX;
+		int MinerSpawnY;
+		bool onGameStart;
 
 		MineBomb()
 		{
 			mineText.loadFromFile("mineWater.png");
 			hitDistance = 2;
+			MinerSpawnX = 7;
+			MinerSpawnY = 8;
+			onGameStart = true;
+
+			
 		}
 
 		~MineBomb(){}
 
-		void mineSpawn(Sprite mineBomb, Clock& Mineclock, Texture tiles[12], RenderWindow& app, int tileX, int tileY)
+		void mineSpawn(Sprite mineBomb, Clock& Mineclock, Clock& DeSpawnclock, Texture tiles[12], RenderWindow& app, int tileX, int tileY)
 		{
 			int mineSpawn = (int)Mineclock.getElapsedTime().asSeconds();
-			int MinerSpawnX = rand() % 10 + 4;
-			int MinerSpawnY = rand() % 7 + 4;
-			int lastRspawnX;
-			int lastRspawnY;
+			int deSpawn = (int)DeSpawnclock.getElapsedTime().asSeconds();
 			
+			cout << mineSpawn << "  " << deSpawn <<  endl;
+			
+			if(onGameStart == true) gamefield[MinerSpawnX][MinerSpawnY] = 11;
 
-			if(mineSpawn >= 20)
+			if(mineSpawn >= 10)
 			{
-				for (int i = 0; i < 22; i++) 
-				{
-					for (int j = 0; j < 22; j++)
-					{
-						
-						gamefield[MinerSpawnY][MinerSpawnX] = 11;
+				MinerSpawnX = rand() % 10 + 4;
+				MinerSpawnY = rand() % 7 + 4;
 
-						lastRspawnX = MinerSpawnX;
-						lastRspawnY = MinerSpawnY;
-
-						mineBomb.setTexture(tiles[11]);
-
-						mineBomb.setPosition(tileX * 32, tileY * 32);
-
-						app.draw(mineBomb);
-						
+				gamefield[MinerSpawnX][MinerSpawnY] = 11;
 				
-						
-					}
-			
-				}
-				
+
+
 				Mineclock.restart();
-				
 			}
-			
+			if(deSpawn >=  9)
+				{
+					
+					gamefield[MinerSpawnX][MinerSpawnY] = 0;
+					onGameStart = false;
+					DeSpawnclock.restart();
+
+				}
 			
 				
 			

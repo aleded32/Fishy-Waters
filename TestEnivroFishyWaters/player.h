@@ -59,7 +59,7 @@ public:
 	void blowUp(int playerX, int playerY, RenderWindow& app)
 	{
 		int randBlowUp;
-		int randChance = 50;
+		int randChance = 40;
 
 		srand(time(NULL));
 

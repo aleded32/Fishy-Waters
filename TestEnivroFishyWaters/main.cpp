@@ -7,6 +7,7 @@
 #include "fish.h"
 #include "debuffs.h"
 #include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
 
 using namespace std;
 using namespace sf;
@@ -43,6 +44,7 @@ int main()
 	//local variables
 	Clock Fishclock;
 	Clock Mineclock;
+	Clock DeSpawnclock;
 	app.setFramerateLimit(20);
 
 	//class classes
@@ -55,7 +57,15 @@ int main()
 	Fishes fishes;
 	MineBomb mineBomb;
 
-	
+	//Background Music
+	sf::SoundBuffer buffer;
+	buffer.loadFromFile("background.wav");
+	sf::Sound backgroundMusic;
+	backgroundMusic.setBuffer(buffer);
+
+	//playmusic
+	backgroundMusic.play();
+	backgroundMusic.setLoop(true);
 
 	//Text & font
 	Text GameOver;
@@ -156,6 +166,8 @@ while (app.isOpen()) {
 
 	}
 	
+	
+
 	if(isupgrade && !isdocked && !isdead)
 	{
 		
@@ -168,7 +180,7 @@ while (app.isOpen()) {
 			gamefield[player.playerY + 1][player.playerX] = 0;
 			gamefield[player.playerY][player.playerX] = 10;
 		}
-			else if (gamefield[player.playerY - 1][player.playerX] != 0);
+			//else if (gamefield[player.playerY - 1][player.playerX] != 0);
 		
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -180,7 +192,7 @@ while (app.isOpen()) {
 			gamefield[player.playerY][player.playerX - 1] = 0;
 			gamefield[player.playerY][player.playerX] = 10;
 		}
-			else if (gamefield[player.playerY][player.playerX + 1] != 0);
+			//else if (gamefield[player.playerY][player.playerX + 1] != 0);
 
 		}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -194,7 +206,7 @@ while (app.isOpen()) {
 			gamefield[player.playerY - 1][player.playerX] = 0;
 			gamefield[player.playerY][player.playerX] = 10;
 		}
-		else if (gamefield[player.playerY + 1][player.playerX] != 0);
+		//else if (gamefield[player.playerY + 1][player.playerX] != 0);
 
 
 	}
@@ -208,7 +220,7 @@ while (app.isOpen()) {
 			gamefield[player.playerY][player.playerX + 1] = 0;
 			gamefield[player.playerY][player.playerX] = 10;
 		}
-		else if (gamefield[player.playerY][player.playerX -1] != 0);
+		//else if (gamefield[player.playerY][player.playerX -1] != 0);
 
 
 	}
@@ -333,7 +345,7 @@ while (app.isOpen()) {
 	if(!isdocked && !isdead)
 	{
 	fishes.fishSpawn(fish.fish, grouper.grouper,barracuda.barracuda, Fishclock, &tiles[12], app, tileX, tileY);
-	mineBomb.mineSpawn(mineBomb.mineBomb, Mineclock, &tiles[12], app, tileX, tileY);
+	mineBomb.mineSpawn(mineBomb.mineBomb, Mineclock, DeSpawnclock, &tiles[12], app, tileX, tileY);
 	
 	}
 	//spawns in the tiles
@@ -501,14 +513,16 @@ while (app.isOpen()) {
 	for (int i = 0; i < 22; i++)
 	{
 		for (int j = 0; j < 22; j++)
-		{
+			{
 			
 			spawn(&tiles[gamefield[i][j]], j, i);
 			
 		}
 	}
 
-	cout << isdead << endl;
+	
+	
+
 	app.display();
 }
 	
